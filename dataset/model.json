@@ -1,0 +1,153 @@
+{
+ "version": 1,
+ "generated": "seed 2026",
+ "riders": 600,
+ "months": 36,
+ "cityNames": [
+  "Bengaluru",
+  "Mumbai",
+  "Delhi",
+  "Hyderabad",
+  "Chennai",
+  "Pune"
+ ],
+ "source": "Simulated Indian delivery riders (6 cities, 36 months) calibrated to IMD rainfall normals, festival calendar and published gig-earnings ranges — see dataset/README.md",
+ "sigma": 0.265,
+ "cities": {
+  "Chennai": {
+   "index": [
+    1.088,
+    1.024,
+    1.044,
+    1.056,
+    1.067,
+    1.053,
+    1.002,
+    0.953,
+    0.972,
+    0.926,
+    0.865,
+    0.95
+   ],
+   "typical": 19164
+  },
+  "all": {
+   "index": [
+    1.035,
+    1.007,
+    1.04,
+    1.038,
+    1.028,
+    0.937,
+    0.87,
+    0.868,
+    0.907,
+    1.068,
+    1.134,
+    1.07
+   ],
+   "typical": 20739
+  },
+  "Delhi": {
+   "index": [
+    1.052,
+    1.015,
+    1.051,
+    0.944,
+    0.989,
+    1,
+    0.84,
+    0.817,
+    0.937,
+    1.152,
+    1.129,
+    1.074
+   ],
+   "typical": 21100
+  },
+  "Mumbai": {
+   "index": [
+    1.053,
+    1.029,
+    1.063,
+    1.093,
+    1.115,
+    0.805,
+    0.73,
+    0.79,
+    0.881,
+    1.153,
+    1.176,
+    1.113
+   ],
+   "typical": 21836
+  },
+  "Hyderabad": {
+   "index": [
+    1.008,
+    0.987,
+    1.016,
+    1.006,
+    1.013,
+    0.96,
+    0.903,
+    0.894,
+    0.919,
+    1.072,
+    1.154,
+    1.07
+   ],
+   "typical": 19771
+  },
+  "Bengaluru": {
+   "index": [
+    1.002,
+    0.988,
+    1.031,
+    1.066,
+    0.988,
+    0.965,
+    0.945,
+    0.926,
+    0.883,
+    0.998,
+    1.146,
+    1.062
+   ],
+   "typical": 21640
+  },
+  "Pune": {
+   "index": [
+    1.041,
+    1.007,
+    1.027,
+    1.061,
+    1.095,
+    0.83,
+    0.815,
+    0.879,
+    0.905,
+    1.057,
+    1.186,
+    1.097
+   ],
+   "typical": 19363
+  }
+ },
+ "backtest": {
+  "method": "Train on Dec 2023–Nov 2025, predict each month of Dec 2025–Nov 2026 one month ahead",
+  "predictions": 7200,
+  "mape": 18.3,
+  "medianApe": 9.9,
+  "naiveMape": 24.1,
+  "leanRecall": 62.2,
+  "cityOnlyMape": 19.1,
+  "cityOnlyLeanRecall": 48.4,
+  "leanPrecision": 36.8,
+  "accuracy": 80.5,
+  "alertThreshold": 0.3,
+  "seasonalLeanRecall": 90.4,
+  "leanMonths": 680,
+  "fullTimeMonths": 5052
+ }
+}

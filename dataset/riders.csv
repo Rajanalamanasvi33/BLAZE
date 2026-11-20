@@ -1,0 +1,601 @@
+rider_id,city,platform,vehicle,type,hours_per_day,joined_month,hometown_months
+R0001,Chennai,Zepto,petrol bike,full-time,12,14,
+R0002,Delhi,Blinkit,petrol bike,full-time,9,0,Apr
+R0003,Delhi,Zomato,bicycle,full-time,11,0,Apr
+R0004,Mumbai,Swiggy,petrol bike,full-time,11,0,Nov
+R0005,Delhi,Swiggy Instamart,petrol bike,full-time,12,4,Jun+Jul
+R0006,Mumbai,Zomato,petrol bike,full-time,9,0,Apr
+R0007,Mumbai,Blinkit,petrol bike,part-time,5,7,
+R0008,Mumbai,Blinkit,petrol bike,full-time,9,12,Nov
+R0009,Chennai,Swiggy,petrol bike,full-time,11,2,
+R0010,Mumbai,Zepto,petrol bike,full-time,9,0,Nov
+R0011,Mumbai,Zomato,petrol bike,full-time,10,0,
+R0012,Hyderabad,Swiggy,petrol bike,full-time,11,0,
+R0013,Hyderabad,Swiggy,petrol bike,full-time,9,5,
+R0014,Mumbai,Swiggy,petrol bike,part-time,6,0,
+R0015,Bengaluru,Zepto,petrol bike,full-time,12,0,
+R0016,Hyderabad,Swiggy Instamart,petrol bike,full-time,12,0,
+R0017,Delhi,Zepto,petrol bike,part-time,5,17,
+R0018,Mumbai,Swiggy Instamart,bicycle,part-time,6,0,
+R0019,Delhi,Swiggy Instamart,petrol bike,full-time,10,0,
+R0020,Delhi,Zepto,petrol bike,full-time,9,0,Nov
+R0021,Hyderabad,Zomato,petrol bike,full-time,10,14,Aug+Sep
+R0022,Delhi,Zepto,petrol bike,part-time,6,6,Aug+Sep
+R0023,Pune,Zomato,petrol bike,full-time,10,0,
+R0024,Hyderabad,Swiggy,petrol bike,full-time,11,0,
+R0025,Pune,Swiggy Instamart,petrol bike,full-time,9,0,
+R0026,Delhi,Zomato,petrol bike,full-time,11,0,Jun+Jul
+R0027,Mumbai,Blinkit,petrol bike,full-time,10,6,Aug+Sep
+R0028,Bengaluru,Zomato,petrol bike,part-time,7,15,
+R0029,Pune,Zomato,petrol bike,full-time,9,0,Jun+Jul
+R0030,Pune,Swiggy,petrol bike,full-time,11,0,
+R0031,Hyderabad,Swiggy Instamart,petrol bike,part-time,5,0,
+R0032,Mumbai,Zepto,petrol bike,full-time,10,0,
+R0033,Bengaluru,Zepto,petrol bike,full-time,10,1,
+R0034,Bengaluru,Blinkit,petrol bike,full-time,9,0,
+R0035,Pune,Zomato,petrol bike,full-time,9,0,
+R0036,Delhi,Blinkit,petrol bike,part-time,4,0,Jun+Jul
+R0037,Pune,Swiggy,petrol bike,part-time,6,0,
+R0038,Bengaluru,Swiggy,petrol bike,full-time,11,0,
+R0039,Mumbai,Zomato,petrol bike,part-time,5,0,
+R0040,Hyderabad,Blinkit,petrol bike,full-time,9,0,Aug+Sep
+R0041,Pune,Zomato,petrol bike,full-time,11,7,Nov
+R0042,Hyderabad,Swiggy,EV scooter,full-time,10,0,
+R0043,Delhi,Swiggy Instamart,petrol bike,part-time,4,0,
+R0044,Bengaluru,Zomato,petrol bike,part-time,4,11,
+R0045,Bengaluru,Blinkit,petrol bike,full-time,10,0,Jun+Jul
+R0046,Pune,Swiggy Instamart,petrol bike,part-time,6,0,Aug+Sep
+R0047,Mumbai,Zepto,petrol bike,full-time,9,0,Nov
+R0048,Bengaluru,Blinkit,petrol bike,part-time,4,0,
+R0049,Delhi,Swiggy Instamart,petrol bike,full-time,12,0,
+R0050,Chennai,Swiggy,petrol bike,full-time,10,0,Aug+Sep
+R0051,Bengaluru,Zomato,petrol bike,full-time,11,15,
+R0052,Mumbai,Zepto,petrol bike,full-time,11,0,
+R0053,Mumbai,Zepto,petrol bike,full-time,10,0,
+R0054,Bengaluru,Zomato,petrol bike,full-time,11,0,Apr
+R0055,Mumbai,Zepto,petrol bike,full-time,12,0,
+R0056,Pune,Swiggy,petrol bike,full-time,9,13,
+R0057,Hyderabad,Zomato,EV scooter,full-time,11,14,
+R0058,Mumbai,Swiggy,petrol bike,full-time,12,0,
+R0059,Mumbai,Zomato,petrol bike,part-time,5,0,
+R0060,Bengaluru,Swiggy Instamart,petrol bike,part-time,4,0,Jun+Jul
+R0061,Chennai,Zomato,petrol bike,full-time,10,17,
+R0062,Bengaluru,Zepto,petrol bike,full-time,10,0,
+R0063,Bengaluru,Zomato,petrol bike,full-time,9,0,Aug+Sep
+R0064,Bengaluru,Zepto,petrol bike,part-time,6,12,
+R0065,Chennai,Zomato,petrol bike,full-time,11,0,Jun+Jul
+R0066,Bengaluru,Swiggy,petrol bike,full-time,12,0,
+R0067,Chennai,Zomato,petrol bike,full-time,11,8,
+R0068,Mumbai,Swiggy Instamart,petrol bike,full-time,9,0,
+R0069,Bengaluru,Blinkit,petrol bike,full-time,10,0,
+R0070,Delhi,Zomato,petrol bike,full-time,9,0,
+R0071,Hyderabad,Swiggy Instamart,petrol bike,full-time,12,2,
+R0072,Hyderabad,Blinkit,petrol bike,part-time,5,0,Nov
+R0073,Bengaluru,Swiggy,petrol bike,full-time,9,16,
+R0074,Chennai,Swiggy Instamart,petrol bike,part-time,6,5,Nov
+R0075,Hyderabad,Zomato,petrol bike,full-time,10,0,
+R0076,Hyderabad,Zomato,petrol bike,full-time,10,0,
+R0077,Chennai,Swiggy,petrol bike,part-time,6,0,Apr
+R0078,Bengaluru,Zepto,petrol bike,part-time,5,0,Jun+Jul
+R0079,Mumbai,Blinkit,bicycle,full-time,9,0,
+R0080,Bengaluru,Zepto,petrol bike,full-time,11,0,
+R0081,Hyderabad,Zomato,petrol bike,full-time,10,0,
+R0082,Bengaluru,Zomato,petrol bike,full-time,11,0,
+R0083,Delhi,Zepto,petrol bike,full-time,11,0,Jun+Jul
+R0084,Bengaluru,Zepto,petrol bike,full-time,12,0,Aug+Sep
+R0085,Mumbai,Swiggy Instamart,petrol bike,full-time,11,13,Jun+Jul
+R0086,Bengaluru,Zepto,petrol bike,full-time,10,0,Aug+Sep
+R0087,Delhi,Swiggy Instamart,petrol bike,full-time,11,0,
+R0088,Hyderabad,Blinkit,petrol bike,full-time,9,0,
+R0089,Mumbai,Zepto,petrol bike,part-time,5,0,
+R0090,Mumbai,Swiggy,petrol bike,part-time,5,0,
+R0091,Chennai,Blinkit,bicycle,full-time,11,0,Nov
+R0092,Bengaluru,Blinkit,EV scooter,part-time,6,0,Apr
+R0093,Bengaluru,Zepto,petrol bike,full-time,11,6,
+R0094,Hyderabad,Swiggy,petrol bike,full-time,11,0,Aug+Sep
+R0095,Delhi,Zepto,petrol bike,full-time,9,12,
+R0096,Chennai,Zepto,petrol bike,part-time,6,0,
+R0097,Bengaluru,Zepto,petrol bike,full-time,9,0,
+R0098,Delhi,Zepto,petrol bike,full-time,11,0,
+R0099,Delhi,Swiggy Instamart,bicycle,full-time,10,0,
+R0100,Pune,Zepto,petrol bike,full-time,10,0,Jun+Jul
+R0101,Hyderabad,Swiggy Instamart,petrol bike,part-time,5,0,
+R0102,Mumbai,Swiggy,petrol bike,part-time,6,0,
+R0103,Pune,Blinkit,petrol bike,full-time,10,12,Jun+Jul
+R0104,Bengaluru,Zepto,bicycle,full-time,11,13,
+R0105,Pune,Swiggy Instamart,EV scooter,part-time,6,6,
+R0106,Hyderabad,Zepto,petrol bike,full-time,11,0,Apr
+R0107,Bengaluru,Blinkit,petrol bike,full-time,11,0,
+R0108,Hyderabad,Zepto,petrol bike,part-time,5,0,
+R0109,Delhi,Swiggy Instamart,petrol bike,part-time,7,0,
+R0110,Delhi,Blinkit,petrol bike,part-time,5,0,
+R0111,Hyderabad,Zepto,petrol bike,full-time,10,0,
+R0112,Delhi,Swiggy,petrol bike,part-time,6,0,Apr
+R0113,Delhi,Swiggy Instamart,petrol bike,full-time,11,0,
+R0114,Bengaluru,Blinkit,petrol bike,full-time,11,0,Nov
+R0115,Hyderabad,Swiggy,petrol bike,full-time,10,0,
+R0116,Delhi,Blinkit,bicycle,full-time,12,0,
+R0117,Mumbai,Blinkit,petrol bike,full-time,12,0,Aug+Sep
+R0118,Hyderabad,Zepto,petrol bike,part-time,6,6,
+R0119,Chennai,Blinkit,petrol bike,full-time,12,0,
+R0120,Bengaluru,Blinkit,petrol bike,full-time,9,0,
+R0121,Bengaluru,Zomato,petrol bike,full-time,10,0,
+R0122,Bengaluru,Zepto,petrol bike,part-time,6,4,Aug+Sep
+R0123,Pune,Swiggy,petrol bike,full-time,10,0,Jun+Jul
+R0124,Bengaluru,Blinkit,petrol bike,full-time,10,0,Apr
+R0125,Chennai,Zepto,petrol bike,part-time,6,0,
+R0126,Bengaluru,Zomato,petrol bike,part-time,4,7,
+R0127,Bengaluru,Blinkit,petrol bike,full-time,10,0,
+R0128,Mumbai,Blinkit,petrol bike,part-time,5,0,
+R0129,Bengaluru,Swiggy Instamart,petrol bike,part-time,4,0,
+R0130,Bengaluru,Zepto,petrol bike,full-time,11,0,
+R0131,Bengaluru,Zomato,petrol bike,full-time,11,0,
+R0132,Pune,Swiggy Instamart,petrol bike,full-time,9,0,Apr
+R0133,Bengaluru,Zepto,petrol bike,full-time,11,8,
+R0134,Pune,Zomato,petrol bike,full-time,11,10,
+R0135,Hyderabad,Swiggy Instamart,bicycle,full-time,10,0,
+R0136,Mumbai,Zomato,petrol bike,full-time,10,5,
+R0137,Mumbai,Blinkit,petrol bike,full-time,10,0,
+R0138,Chennai,Zepto,petrol bike,full-time,10,0,
+R0139,Chennai,Zomato,bicycle,part-time,6,1,
+R0140,Mumbai,Swiggy Instamart,petrol bike,full-time,9,5,
+R0141,Hyderabad,Blinkit,petrol bike,full-time,10,16,
+R0142,Pune,Zomato,petrol bike,part-time,6,0,
+R0143,Hyderabad,Zomato,bicycle,full-time,9,0,Apr
+R0144,Mumbai,Zepto,petrol bike,part-time,4,13,
+R0145,Bengaluru,Zomato,EV scooter,full-time,10,0,Nov
+R0146,Mumbai,Zepto,petrol bike,full-time,9,0,
+R0147,Hyderabad,Blinkit,petrol bike,full-time,9,11,
+R0148,Hyderabad,Swiggy,petrol bike,part-time,5,0,
+R0149,Delhi,Blinkit,EV scooter,part-time,5,0,Nov
+R0150,Bengaluru,Zepto,petrol bike,full-time,12,0,
+R0151,Bengaluru,Swiggy Instamart,petrol bike,full-time,9,9,
+R0152,Chennai,Swiggy,petrol bike,full-time,10,0,Nov
+R0153,Hyderabad,Zomato,petrol bike,full-time,9,0,Apr
+R0154,Mumbai,Zepto,petrol bike,full-time,9,0,
+R0155,Bengaluru,Blinkit,petrol bike,full-time,11,0,
+R0156,Delhi,Zepto,petrol bike,full-time,11,0,
+R0157,Mumbai,Swiggy,petrol bike,full-time,10,0,Apr
+R0158,Chennai,Zomato,petrol bike,part-time,5,12,
+R0159,Hyderabad,Swiggy,petrol bike,part-time,5,9,
+R0160,Delhi,Swiggy Instamart,petrol bike,full-time,12,0,
+R0161,Delhi,Blinkit,petrol bike,part-time,4,15,
+R0162,Mumbai,Zomato,petrol bike,full-time,9,0,
+R0163,Pune,Zomato,petrol bike,full-time,9,15,
+R0164,Bengaluru,Blinkit,petrol bike,full-time,10,0,
+R0165,Chennai,Swiggy Instamart,petrol bike,full-time,11,6,
+R0166,Mumbai,Swiggy Instamart,petrol bike,full-time,10,0,
+R0167,Delhi,Swiggy,petrol bike,part-time,4,0,Aug+Sep
+R0168,Chennai,Zomato,petrol bike,full-time,9,0,
+R0169,Mumbai,Swiggy,petrol bike,part-time,6,0,
+R0170,Mumbai,Zepto,petrol bike,full-time,9,0,
+R0171,Mumbai,Swiggy,petrol bike,full-time,10,0,
+R0172,Bengaluru,Zepto,petrol bike,full-time,11,0,
+R0173,Pune,Zepto,EV scooter,full-time,9,0,
+R0174,Hyderabad,Zepto,petrol bike,part-time,4,0,
+R0175,Bengaluru,Blinkit,petrol bike,full-time,10,0,Apr
+R0176,Bengaluru,Swiggy Instamart,petrol bike,full-time,9,0,
+R0177,Bengaluru,Blinkit,petrol bike,full-time,11,0,
+R0178,Bengaluru,Swiggy,EV scooter,full-time,10,0,
+R0179,Delhi,Blinkit,petrol bike,part-time,7,10,
+R0180,Bengaluru,Zepto,petrol bike,part-time,4,0,Jun+Jul
+R0181,Delhi,Swiggy,petrol bike,part-time,7,0,Jun+Jul
+R0182,Hyderabad,Blinkit,petrol bike,full-time,11,0,
+R0183,Delhi,Zomato,EV scooter,full-time,12,0,
+R0184,Pune,Swiggy,petrol bike,full-time,11,7,Nov
+R0185,Hyderabad,Blinkit,petrol bike,full-time,11,0,
+R0186,Mumbai,Zomato,EV scooter,part-time,5,0,
+R0187,Delhi,Swiggy,petrol bike,full-time,10,0,
+R0188,Delhi,Blinkit,petrol bike,full-time,10,8,Aug+Sep
+R0189,Chennai,Swiggy,petrol bike,full-time,9,3,Jun+Jul
+R0190,Mumbai,Swiggy Instamart,EV scooter,full-time,10,0,Aug+Sep
+R0191,Pune,Swiggy,petrol bike,full-time,11,0,
+R0192,Delhi,Swiggy,petrol bike,full-time,11,0,
+R0193,Delhi,Swiggy Instamart,petrol bike,part-time,5,0,
+R0194,Mumbai,Swiggy,petrol bike,part-time,7,0,
+R0195,Hyderabad,Blinkit,petrol bike,full-time,10,0,
+R0196,Bengaluru,Zepto,EV scooter,full-time,9,0,
+R0197,Mumbai,Blinkit,petrol bike,full-time,12,0,
+R0198,Hyderabad,Zepto,petrol bike,part-time,7,0,Apr
+R0199,Hyderabad,Zomato,petrol bike,full-time,12,0,
+R0200,Bengaluru,Swiggy Instamart,petrol bike,full-time,10,0,
+R0201,Bengaluru,Swiggy Instamart,petrol bike,full-time,11,9,Nov
+R0202,Delhi,Zepto,petrol bike,full-time,10,0,Apr
+R0203,Hyderabad,Zomato,petrol bike,part-time,6,1,Jun+Jul
+R0204,Mumbai,Swiggy Instamart,petrol bike,full-time,11,0,
+R0205,Hyderabad,Zomato,petrol bike,part-time,6,0,
+R0206,Chennai,Zepto,petrol bike,part-time,6,1,Aug+Sep
+R0207,Mumbai,Blinkit,petrol bike,full-time,9,9,
+R0208,Mumbai,Swiggy,petrol bike,full-time,10,0,
+R0209,Chennai,Swiggy Instamart,petrol bike,part-time,4,0,Aug+Sep
+R0210,Delhi,Blinkit,petrol bike,full-time,10,0,
+R0211,Delhi,Zomato,petrol bike,part-time,4,0,Aug+Sep
+R0212,Delhi,Zomato,petrol bike,part-time,7,0,
+R0213,Mumbai,Blinkit,petrol bike,full-time,10,0,Jun+Jul
+R0214,Pune,Zepto,petrol bike,full-time,11,0,Jun+Jul
+R0215,Delhi,Zomato,EV scooter,full-time,10,0,Apr
+R0216,Bengaluru,Zomato,petrol bike,full-time,10,16,
+R0217,Bengaluru,Swiggy,petrol bike,part-time,7,0,
+R0218,Pune,Zepto,petrol bike,part-time,7,0,Nov
+R0219,Bengaluru,Zomato,bicycle,part-time,6,0,Jun+Jul
+R0220,Hyderabad,Swiggy,petrol bike,full-time,11,0,
+R0221,Bengaluru,Swiggy,petrol bike,full-time,11,0,
+R0222,Bengaluru,Blinkit,petrol bike,full-time,10,0,
+R0223,Mumbai,Swiggy,petrol bike,full-time,12,10,
+R0224,Pune,Zomato,petrol bike,part-time,5,0,Apr
+R0225,Mumbai,Zepto,EV scooter,full-time,11,10,Apr
+R0226,Mumbai,Swiggy,petrol bike,full-time,12,0,
+R0227,Mumbai,Zepto,petrol bike,full-time,11,0,Nov
+R0228,Delhi,Zomato,petrol bike,part-time,6,0,
+R0229,Chennai,Zepto,petrol bike,full-time,9,0,
+R0230,Bengaluru,Blinkit,petrol bike,full-time,10,0,
+R0231,Delhi,Blinkit,petrol bike,part-time,4,0,
+R0232,Delhi,Swiggy Instamart,petrol bike,full-time,11,0,
+R0233,Delhi,Swiggy,petrol bike,part-time,5,0,Jun+Jul
+R0234,Delhi,Blinkit,petrol bike,full-time,10,0,
+R0235,Bengaluru,Swiggy Instamart,petrol bike,part-time,5,0,
+R0236,Delhi,Swiggy,petrol bike,full-time,10,16,
+R0237,Hyderabad,Zomato,petrol bike,full-time,11,0,
+R0238,Hyderabad,Swiggy,petrol bike,full-time,12,0,
+R0239,Bengaluru,Swiggy Instamart,petrol bike,part-time,5,0,
+R0240,Delhi,Zomato,EV scooter,full-time,10,0,Nov
+R0241,Delhi,Zomato,petrol bike,part-time,5,0,
+R0242,Bengaluru,Zepto,petrol bike,full-time,10,9,
+R0243,Bengaluru,Zepto,petrol bike,part-time,5,0,Nov
+R0244,Bengaluru,Zepto,petrol bike,part-time,6,0,Nov
+R0245,Bengaluru,Zomato,petrol bike,part-time,6,0,
+R0246,Mumbai,Swiggy Instamart,petrol bike,full-time,11,2,
+R0247,Bengaluru,Zepto,petrol bike,full-time,10,0,Apr
+R0248,Chennai,Zepto,petrol bike,full-time,10,0,
+R0249,Chennai,Blinkit,bicycle,full-time,10,0,
+R0250,Bengaluru,Swiggy Instamart,petrol bike,full-time,11,0,
+R0251,Hyderabad,Blinkit,petrol bike,full-time,10,0,Apr
+R0252,Chennai,Swiggy,petrol bike,part-time,7,7,Jun+Jul
+R0253,Mumbai,Swiggy Instamart,petrol bike,full-time,12,0,
+R0254,Hyderabad,Zomato,petrol bike,full-time,10,0,
+R0255,Mumbai,Blinkit,petrol bike,full-time,10,0,
+R0256,Bengaluru,Zomato,EV scooter,full-time,10,8,
+R0257,Bengaluru,Zepto,petrol bike,part-time,7,0,
+R0258,Mumbai,Blinkit,petrol bike,full-time,11,4,Nov
+R0259,Hyderabad,Blinkit,petrol bike,full-time,11,0,
+R0260,Bengaluru,Zomato,petrol bike,full-time,10,0,
+R0261,Chennai,Swiggy,petrol bike,part-time,6,0,
+R0262,Pune,Blinkit,petrol bike,full-time,9,6,
+R0263,Pune,Zomato,petrol bike,full-time,11,0,Jun+Jul
+R0264,Bengaluru,Swiggy Instamart,petrol bike,part-time,7,0,
+R0265,Delhi,Swiggy,petrol bike,full-time,10,0,
+R0266,Bengaluru,Swiggy Instamart,bicycle,full-time,10,0,
+R0267,Bengaluru,Swiggy Instamart,EV scooter,full-time,11,0,
+R0268,Bengaluru,Blinkit,petrol bike,part-time,5,0,
+R0269,Delhi,Zepto,bicycle,full-time,10,0,Nov
+R0270,Pune,Zepto,petrol bike,part-time,6,16,
+R0271,Hyderabad,Swiggy Instamart,petrol bike,full-time,10,0,
+R0272,Hyderabad,Swiggy,petrol bike,part-time,5,13,
+R0273,Pune,Swiggy Instamart,petrol bike,full-time,11,0,Nov
+R0274,Bengaluru,Swiggy Instamart,petrol bike,full-time,11,0,
+R0275,Bengaluru,Swiggy Instamart,petrol bike,part-time,5,0,
+R0276,Bengaluru,Swiggy,EV scooter,full-time,9,0,
+R0277,Chennai,Swiggy,petrol bike,full-time,11,0,
+R0278,Chennai,Blinkit,petrol bike,part-time,5,0,
+R0279,Bengaluru,Zomato,petrol bike,full-time,9,0,
+R0280,Delhi,Zepto,EV scooter,full-time,11,0,
+R0281,Hyderabad,Blinkit,petrol bike,full-time,10,0,Jun+Jul
+R0282,Pune,Zepto,petrol bike,full-time,11,0,Apr
+R0283,Mumbai,Zomato,petrol bike,full-time,9,0,Nov
+R0284,Delhi,Swiggy Instamart,petrol bike,full-time,11,0,
+R0285,Delhi,Zomato,petrol bike,part-time,5,0,
+R0286,Mumbai,Blinkit,petrol bike,full-time,10,0,
+R0287,Pune,Zomato,petrol bike,full-time,11,0,
+R0288,Chennai,Swiggy Instamart,petrol bike,full-time,12,6,
+R0289,Delhi,Swiggy Instamart,petrol bike,full-time,12,1,Jun+Jul
+R0290,Hyderabad,Swiggy Instamart,petrol bike,full-time,10,0,Nov
+R0291,Bengaluru,Zomato,petrol bike,full-time,10,3,
+R0292,Mumbai,Zomato,petrol bike,full-time,10,0,Apr
+R0293,Chennai,Zomato,petrol bike,full-time,11,0,Apr
+R0294,Pune,Zepto,petrol bike,full-time,9,0,Aug+Sep
+R0295,Mumbai,Swiggy Instamart,petrol bike,full-time,11,17,
+R0296,Bengaluru,Swiggy,petrol bike,part-time,4,0,
+R0297,Hyderabad,Blinkit,petrol bike,part-time,6,0,Nov
+R0298,Mumbai,Swiggy,petrol bike,full-time,11,6,
+R0299,Delhi,Blinkit,petrol bike,full-time,11,12,
+R0300,Pune,Blinkit,petrol bike,full-time,10,0,
+R0301,Delhi,Zomato,petrol bike,full-time,10,0,Jun+Jul
+R0302,Hyderabad,Zomato,petrol bike,full-time,11,0,Jun+Jul
+R0303,Hyderabad,Swiggy,bicycle,full-time,11,0,
+R0304,Delhi,Swiggy,petrol bike,part-time,5,0,
+R0305,Chennai,Swiggy,petrol bike,part-time,4,0,
+R0306,Hyderabad,Zepto,bicycle,full-time,11,11,Apr
+R0307,Pune,Zepto,petrol bike,full-time,11,0,
+R0308,Bengaluru,Swiggy Instamart,petrol bike,part-time,5,15,
+R0309,Mumbai,Swiggy,petrol bike,full-time,11,0,Nov
+R0310,Chennai,Swiggy,petrol bike,full-time,10,0,Nov
+R0311,Bengaluru,Zepto,petrol bike,full-time,11,10,
+R0312,Delhi,Zomato,petrol bike,part-time,7,0,
+R0313,Delhi,Swiggy,petrol bike,part-time,6,0,
+R0314,Delhi,Blinkit,petrol bike,full-time,10,6,
+R0315,Mumbai,Blinkit,petrol bike,part-time,4,0,
+R0316,Mumbai,Swiggy Instamart,petrol bike,part-time,5,17,
+R0317,Pune,Zepto,petrol bike,part-time,7,0,
+R0318,Bengaluru,Blinkit,petrol bike,part-time,6,0,Apr
+R0319,Bengaluru,Swiggy Instamart,petrol bike,full-time,12,0,
+R0320,Mumbai,Blinkit,petrol bike,part-time,5,7,
+R0321,Delhi,Swiggy,petrol bike,full-time,12,0,
+R0322,Delhi,Zomato,petrol bike,full-time,11,4,
+R0323,Delhi,Blinkit,petrol bike,full-time,9,0,
+R0324,Hyderabad,Blinkit,petrol bike,full-time,12,0,Apr
+R0325,Hyderabad,Swiggy Instamart,petrol bike,full-time,11,5,Aug+Sep
+R0326,Chennai,Swiggy,petrol bike,full-time,9,0,
+R0327,Pune,Swiggy,EV scooter,full-time,9,0,Aug+Sep
+R0328,Mumbai,Blinkit,petrol bike,full-time,12,0,
+R0329,Pune,Blinkit,petrol bike,full-time,11,0,
+R0330,Delhi,Swiggy,petrol bike,full-time,10,0,
+R0331,Chennai,Zomato,petrol bike,part-time,7,0,
+R0332,Pune,Swiggy Instamart,petrol bike,part-time,5,7,Apr
+R0333,Delhi,Swiggy,petrol bike,full-time,10,0,
+R0334,Mumbai,Zepto,petrol bike,full-time,9,0,Apr
+R0335,Hyderabad,Blinkit,EV scooter,part-time,5,12,Aug+Sep
+R0336,Chennai,Blinkit,petrol bike,full-time,11,0,Apr
+R0337,Delhi,Blinkit,EV scooter,full-time,9,0,
+R0338,Delhi,Zomato,petrol bike,full-time,10,4,Aug+Sep
+R0339,Hyderabad,Swiggy,petrol bike,part-time,4,15,
+R0340,Bengaluru,Swiggy Instamart,petrol bike,full-time,11,0,Nov
+R0341,Bengaluru,Blinkit,EV scooter,full-time,11,0,
+R0342,Bengaluru,Swiggy,bicycle,part-time,6,0,
+R0343,Bengaluru,Zomato,petrol bike,full-time,11,6,
+R0344,Mumbai,Blinkit,petrol bike,full-time,9,0,
+R0345,Delhi,Zepto,petrol bike,full-time,12,0,
+R0346,Bengaluru,Zepto,petrol bike,full-time,12,0,
+R0347,Delhi,Zomato,petrol bike,full-time,12,0,
+R0348,Pune,Swiggy,petrol bike,part-time,6,0,Aug+Sep
+R0349,Pune,Blinkit,petrol bike,part-time,6,0,Apr
+R0350,Delhi,Zepto,petrol bike,full-time,12,0,
+R0351,Mumbai,Zepto,petrol bike,full-time,12,0,
+R0352,Bengaluru,Swiggy,petrol bike,full-time,10,0,
+R0353,Bengaluru,Swiggy,petrol bike,full-time,10,0,
+R0354,Delhi,Swiggy Instamart,petrol bike,full-time,9,5,
+R0355,Bengaluru,Blinkit,EV scooter,full-time,10,0,Aug+Sep
+R0356,Pune,Blinkit,petrol bike,part-time,6,0,
+R0357,Hyderabad,Zomato,petrol bike,part-time,6,2,
+R0358,Bengaluru,Blinkit,petrol bike,part-time,4,0,Jun+Jul
+R0359,Mumbai,Swiggy,petrol bike,part-time,7,8,
+R0360,Hyderabad,Zomato,petrol bike,full-time,10,0,Aug+Sep
+R0361,Delhi,Blinkit,petrol bike,part-time,6,0,
+R0362,Pune,Zepto,petrol bike,full-time,9,5,
+R0363,Mumbai,Zepto,petrol bike,full-time,10,0,Jun+Jul
+R0364,Chennai,Zomato,petrol bike,part-time,6,0,
+R0365,Mumbai,Zepto,bicycle,full-time,9,0,
+R0366,Mumbai,Zomato,petrol bike,full-time,12,0,
+R0367,Chennai,Swiggy Instamart,petrol bike,part-time,4,0,
+R0368,Delhi,Swiggy Instamart,petrol bike,full-time,10,0,Apr
+R0369,Chennai,Zomato,petrol bike,full-time,11,0,
+R0370,Delhi,Swiggy Instamart,petrol bike,full-time,10,0,
+R0371,Pune,Swiggy Instamart,petrol bike,full-time,10,0,
+R0372,Mumbai,Swiggy,EV scooter,part-time,6,13,
+R0373,Bengaluru,Swiggy,EV scooter,full-time,11,0,
+R0374,Mumbai,Swiggy Instamart,petrol bike,full-time,10,12,
+R0375,Pune,Swiggy Instamart,petrol bike,full-time,11,0,
+R0376,Bengaluru,Zepto,petrol bike,full-time,10,0,
+R0377,Mumbai,Zepto,petrol bike,full-time,11,0,Jun+Jul
+R0378,Mumbai,Swiggy Instamart,EV scooter,full-time,11,0,
+R0379,Mumbai,Blinkit,petrol bike,full-time,11,15,
+R0380,Bengaluru,Blinkit,petrol bike,full-time,10,0,
+R0381,Bengaluru,Blinkit,petrol bike,full-time,9,8,Apr
+R0382,Chennai,Swiggy,petrol bike,part-time,4,0,
+R0383,Delhi,Zomato,petrol bike,part-time,5,0,
+R0384,Mumbai,Blinkit,petrol bike,full-time,12,0,
+R0385,Bengaluru,Zepto,EV scooter,full-time,12,9,
+R0386,Bengaluru,Swiggy,petrol bike,full-time,10,2,
+R0387,Mumbai,Zomato,petrol bike,part-time,6,2,Aug+Sep
+R0388,Delhi,Blinkit,petrol bike,full-time,10,0,Nov
+R0389,Mumbai,Swiggy,petrol bike,full-time,11,0,Apr
+R0390,Pune,Zepto,EV scooter,part-time,5,7,
+R0391,Bengaluru,Zomato,petrol bike,part-time,6,0,
+R0392,Bengaluru,Blinkit,EV scooter,full-time,10,10,
+R0393,Bengaluru,Zepto,petrol bike,part-time,4,0,
+R0394,Delhi,Blinkit,petrol bike,full-time,10,0,
+R0395,Delhi,Zomato,petrol bike,part-time,6,0,
+R0396,Bengaluru,Zepto,petrol bike,part-time,7,0,
+R0397,Delhi,Blinkit,petrol bike,full-time,12,0,
+R0398,Chennai,Zepto,petrol bike,full-time,10,0,
+R0399,Hyderabad,Swiggy,petrol bike,full-time,11,1,
+R0400,Mumbai,Zomato,petrol bike,part-time,6,0,
+R0401,Pune,Blinkit,petrol bike,full-time,11,0,Aug+Sep
+R0402,Delhi,Zepto,petrol bike,part-time,6,0,
+R0403,Hyderabad,Swiggy Instamart,petrol bike,full-time,11,0,Jun+Jul
+R0404,Delhi,Blinkit,petrol bike,full-time,12,0,
+R0405,Mumbai,Zepto,petrol bike,part-time,6,2,
+R0406,Hyderabad,Zepto,petrol bike,part-time,5,0,
+R0407,Hyderabad,Swiggy Instamart,petrol bike,full-time,12,0,
+R0408,Pune,Swiggy Instamart,EV scooter,part-time,6,0,Aug+Sep
+R0409,Bengaluru,Zomato,petrol bike,full-time,10,0,Jun+Jul
+R0410,Delhi,Blinkit,petrol bike,full-time,11,6,
+R0411,Delhi,Swiggy Instamart,petrol bike,full-time,10,0,
+R0412,Bengaluru,Swiggy,EV scooter,full-time,11,0,
+R0413,Bengaluru,Swiggy Instamart,petrol bike,part-time,5,0,
+R0414,Delhi,Swiggy Instamart,EV scooter,full-time,11,15,
+R0415,Mumbai,Zomato,petrol bike,full-time,9,0,
+R0416,Pune,Blinkit,petrol bike,full-time,9,17,Apr
+R0417,Chennai,Swiggy Instamart,petrol bike,full-time,11,0,Apr
+R0418,Delhi,Swiggy Instamart,petrol bike,full-time,12,0,
+R0419,Mumbai,Swiggy,petrol bike,full-time,10,0,Jun+Jul
+R0420,Chennai,Blinkit,petrol bike,part-time,5,0,
+R0421,Bengaluru,Zepto,petrol bike,full-time,11,5,
+R0422,Bengaluru,Swiggy,petrol bike,full-time,12,15,
+R0423,Hyderabad,Blinkit,petrol bike,full-time,10,0,
+R0424,Mumbai,Blinkit,petrol bike,part-time,5,0,Jun+Jul
+R0425,Mumbai,Blinkit,petrol bike,full-time,10,0,Apr
+R0426,Mumbai,Swiggy Instamart,petrol bike,full-time,10,0,
+R0427,Bengaluru,Zomato,petrol bike,full-time,11,0,
+R0428,Hyderabad,Swiggy,petrol bike,full-time,11,0,Jun+Jul
+R0429,Pune,Zomato,bicycle,part-time,6,6,
+R0430,Hyderabad,Zepto,EV scooter,part-time,4,0,Nov
+R0431,Bengaluru,Zomato,petrol bike,part-time,7,0,
+R0432,Mumbai,Swiggy,petrol bike,full-time,12,0,Apr
+R0433,Bengaluru,Swiggy Instamart,petrol bike,full-time,12,9,
+R0434,Hyderabad,Zomato,EV scooter,part-time,5,9,Jun+Jul
+R0435,Bengaluru,Swiggy Instamart,petrol bike,part-time,6,8,
+R0436,Bengaluru,Blinkit,petrol bike,full-time,10,12,Nov
+R0437,Delhi,Swiggy Instamart,EV scooter,full-time,10,0,
+R0438,Bengaluru,Zomato,petrol bike,full-time,10,0,Nov
+R0439,Mumbai,Zepto,petrol bike,part-time,5,0,
+R0440,Mumbai,Zepto,EV scooter,full-time,9,0,Nov
+R0441,Bengaluru,Swiggy,petrol bike,part-time,7,0,Aug+Sep
+R0442,Bengaluru,Swiggy,petrol bike,part-time,5,0,Nov
+R0443,Mumbai,Zomato,petrol bike,full-time,10,4,
+R0444,Hyderabad,Zepto,petrol bike,full-time,10,0,Apr
+R0445,Bengaluru,Zepto,petrol bike,full-time,10,0,Aug+Sep
+R0446,Mumbai,Zepto,petrol bike,full-time,10,0,
+R0447,Bengaluru,Zepto,petrol bike,part-time,4,0,
+R0448,Hyderabad,Zomato,bicycle,part-time,7,17,
+R0449,Mumbai,Swiggy,petrol bike,full-time,10,0,
+R0450,Pune,Swiggy,petrol bike,full-time,11,0,
+R0451,Chennai,Swiggy,petrol bike,full-time,11,8,
+R0452,Bengaluru,Swiggy,bicycle,full-time,9,0,
+R0453,Delhi,Swiggy,petrol bike,full-time,10,0,
+R0454,Mumbai,Zepto,petrol bike,full-time,11,0,
+R0455,Hyderabad,Swiggy Instamart,petrol bike,full-time,12,0,Aug+Sep
+R0456,Chennai,Blinkit,petrol bike,full-time,10,0,Aug+Sep
+R0457,Pune,Swiggy Instamart,petrol bike,full-time,9,0,Apr
+R0458,Hyderabad,Zepto,petrol bike,full-time,10,0,
+R0459,Hyderabad,Zepto,petrol bike,full-time,11,0,
+R0460,Mumbai,Zepto,petrol bike,full-time,12,6,
+R0461,Bengaluru,Swiggy,petrol bike,full-time,12,15,
+R0462,Bengaluru,Swiggy,petrol bike,full-time,9,1,
+R0463,Delhi,Swiggy,petrol bike,full-time,10,0,
+R0464,Bengaluru,Blinkit,EV scooter,full-time,10,0,
+R0465,Delhi,Swiggy,petrol bike,full-time,10,14,
+R0466,Chennai,Blinkit,petrol bike,full-time,11,0,
+R0467,Bengaluru,Swiggy,EV scooter,full-time,12,13,Jun+Jul
+R0468,Bengaluru,Zepto,petrol bike,full-time,12,0,
+R0469,Hyderabad,Zomato,EV scooter,part-time,5,11,Nov
+R0470,Bengaluru,Swiggy,petrol bike,full-time,9,0,
+R0471,Pune,Swiggy,petrol bike,part-time,5,0,
+R0472,Hyderabad,Zomato,petrol bike,full-time,11,0,Nov
+R0473,Delhi,Zomato,petrol bike,part-time,5,0,Aug+Sep
+R0474,Chennai,Zomato,petrol bike,full-time,10,14,
+R0475,Bengaluru,Swiggy,bicycle,full-time,9,0,
+R0476,Pune,Swiggy Instamart,petrol bike,full-time,11,0,
+R0477,Mumbai,Swiggy,EV scooter,part-time,6,0,Aug+Sep
+R0478,Bengaluru,Zepto,petrol bike,full-time,12,0,
+R0479,Hyderabad,Zomato,petrol bike,full-time,12,0,Nov
+R0480,Mumbai,Zomato,bicycle,full-time,11,0,
+R0481,Delhi,Swiggy,petrol bike,part-time,4,10,Apr
+R0482,Hyderabad,Swiggy Instamart,petrol bike,full-time,10,0,
+R0483,Hyderabad,Zepto,petrol bike,full-time,12,0,
+R0484,Hyderabad,Swiggy Instamart,petrol bike,full-time,10,8,Aug+Sep
+R0485,Delhi,Zomato,petrol bike,full-time,11,10,
+R0486,Bengaluru,Blinkit,petrol bike,part-time,6,5,
+R0487,Hyderabad,Blinkit,petrol bike,full-time,12,0,Aug+Sep
+R0488,Chennai,Swiggy Instamart,petrol bike,full-time,11,0,
+R0489,Bengaluru,Zepto,EV scooter,part-time,5,0,
+R0490,Mumbai,Swiggy,petrol bike,full-time,10,0,
+R0491,Chennai,Zepto,petrol bike,part-time,7,9,
+R0492,Chennai,Zepto,EV scooter,full-time,11,13,
+R0493,Bengaluru,Zepto,petrol bike,full-time,10,0,Nov
+R0494,Mumbai,Zomato,petrol bike,full-time,10,0,
+R0495,Hyderabad,Swiggy,petrol bike,part-time,7,0,
+R0496,Bengaluru,Blinkit,petrol bike,full-time,10,0,Aug+Sep
+R0497,Delhi,Zepto,petrol bike,full-time,10,0,Apr
+R0498,Bengaluru,Zomato,petrol bike,part-time,6,0,
+R0499,Hyderabad,Swiggy,petrol bike,full-time,9,0,
+R0500,Bengaluru,Zepto,petrol bike,full-time,12,0,
+R0501,Mumbai,Zomato,petrol bike,full-time,10,0,Apr
+R0502,Bengaluru,Swiggy,petrol bike,full-time,12,0,Apr
+R0503,Hyderabad,Swiggy,petrol bike,full-time,10,0,
+R0504,Mumbai,Swiggy,petrol bike,full-time,11,0,
+R0505,Bengaluru,Swiggy Instamart,petrol bike,full-time,9,0,
+R0506,Mumbai,Blinkit,petrol bike,full-time,10,0,
+R0507,Delhi,Blinkit,petrol bike,part-time,5,5,
+R0508,Delhi,Zepto,petrol bike,part-time,5,12,
+R0509,Delhi,Zomato,petrol bike,full-time,9,0,
+R0510,Mumbai,Zomato,petrol bike,part-time,5,0,
+R0511,Hyderabad,Swiggy Instamart,petrol bike,full-time,10,1,Nov
+R0512,Bengaluru,Zomato,petrol bike,full-time,10,0,
+R0513,Delhi,Swiggy,petrol bike,full-time,10,0,
+R0514,Mumbai,Blinkit,EV scooter,full-time,12,9,
+R0515,Mumbai,Zepto,petrol bike,full-time,11,0,
+R0516,Chennai,Zepto,petrol bike,part-time,5,0,Apr
+R0517,Mumbai,Swiggy,petrol bike,part-time,6,0,
+R0518,Delhi,Swiggy,petrol bike,full-time,11,0,Apr
+R0519,Mumbai,Swiggy,petrol bike,full-time,11,0,Jun+Jul
+R0520,Hyderabad,Zomato,petrol bike,full-time,11,0,Aug+Sep
+R0521,Hyderabad,Zomato,petrol bike,full-time,10,0,
+R0522,Mumbai,Swiggy Instamart,petrol bike,part-time,4,0,
+R0523,Mumbai,Zepto,petrol bike,full-time,12,0,
+R0524,Pune,Swiggy Instamart,petrol bike,part-time,6,0,
+R0525,Pune,Blinkit,petrol bike,part-time,5,0,
+R0526,Chennai,Swiggy Instamart,petrol bike,full-time,10,0,
+R0527,Delhi,Swiggy Instamart,petrol bike,full-time,10,0,
+R0528,Bengaluru,Swiggy Instamart,petrol bike,full-time,10,12,
+R0529,Hyderabad,Blinkit,petrol bike,full-time,10,0,
+R0530,Bengaluru,Zomato,petrol bike,full-time,11,0,
+R0531,Delhi,Zomato,petrol bike,full-time,10,0,
+R0532,Mumbai,Zomato,EV scooter,full-time,12,0,
+R0533,Delhi,Swiggy Instamart,EV scooter,part-time,7,0,
+R0534,Bengaluru,Blinkit,petrol bike,full-time,9,0,
+R0535,Hyderabad,Swiggy Instamart,petrol bike,full-time,11,0,Jun+Jul
+R0536,Chennai,Zomato,petrol bike,full-time,10,0,
+R0537,Bengaluru,Zomato,EV scooter,full-time,11,0,
+R0538,Hyderabad,Zomato,EV scooter,full-time,11,0,
+R0539,Delhi,Swiggy,petrol bike,full-time,10,0,
+R0540,Pune,Blinkit,EV scooter,full-time,9,0,
+R0541,Chennai,Zomato,petrol bike,full-time,10,0,
+R0542,Mumbai,Swiggy,petrol bike,full-time,11,10,
+R0543,Chennai,Swiggy,petrol bike,full-time,12,0,Jun+Jul
+R0544,Bengaluru,Zomato,EV scooter,full-time,9,0,Aug+Sep
+R0545,Delhi,Swiggy Instamart,petrol bike,full-time,11,0,Jun+Jul
+R0546,Pune,Swiggy,petrol bike,full-time,10,0,
+R0547,Bengaluru,Zepto,petrol bike,part-time,6,0,
+R0548,Bengaluru,Swiggy Instamart,petrol bike,full-time,12,0,
+R0549,Pune,Swiggy Instamart,EV scooter,part-time,6,0,Jun+Jul
+R0550,Bengaluru,Swiggy,petrol bike,part-time,6,0,
+R0551,Mumbai,Zomato,petrol bike,full-time,9,0,
+R0552,Bengaluru,Swiggy Instamart,petrol bike,full-time,12,17,Nov
+R0553,Hyderabad,Zomato,petrol bike,part-time,5,0,
+R0554,Bengaluru,Blinkit,petrol bike,full-time,11,0,
+R0555,Mumbai,Swiggy,petrol bike,full-time,12,0,
+R0556,Mumbai,Blinkit,petrol bike,full-time,10,0,Aug+Sep
+R0557,Delhi,Swiggy Instamart,petrol bike,full-time,10,9,
+R0558,Hyderabad,Zepto,petrol bike,full-time,10,2,
+R0559,Pune,Blinkit,petrol bike,part-time,7,0,
+R0560,Pune,Swiggy Instamart,petrol bike,full-time,9,0,
+R0561,Bengaluru,Zomato,petrol bike,full-time,9,4,
+R0562,Mumbai,Swiggy Instamart,petrol bike,full-time,11,4,
+R0563,Bengaluru,Zomato,petrol bike,part-time,5,0,
+R0564,Bengaluru,Swiggy,petrol bike,part-time,6,0,
+R0565,Pune,Swiggy,petrol bike,part-time,5,0,
+R0566,Chennai,Zomato,petrol bike,full-time,10,0,
+R0567,Delhi,Blinkit,petrol bike,full-time,12,0,
+R0568,Bengaluru,Swiggy,petrol bike,part-time,6,0,Nov
+R0569,Mumbai,Zepto,petrol bike,part-time,6,0,
+R0570,Mumbai,Zomato,petrol bike,part-time,7,0,
+R0571,Hyderabad,Zomato,petrol bike,part-time,6,0,Apr
+R0572,Pune,Swiggy Instamart,petrol bike,part-time,4,0,Nov
+R0573,Hyderabad,Zomato,petrol bike,full-time,11,0,
+R0574,Delhi,Swiggy Instamart,petrol bike,part-time,6,0,Aug+Sep
+R0575,Chennai,Swiggy Instamart,EV scooter,full-time,10,0,
+R0576,Chennai,Zepto,petrol bike,full-time,9,0,
+R0577,Chennai,Blinkit,petrol bike,full-time,9,0,
+R0578,Bengaluru,Swiggy Instamart,petrol bike,full-time,9,0,
+R0579,Chennai,Zomato,petrol bike,part-time,4,0,
+R0580,Hyderabad,Zomato,petrol bike,part-time,5,0,
+R0581,Mumbai,Swiggy Instamart,petrol bike,part-time,4,0,
+R0582,Pune,Swiggy Instamart,EV scooter,part-time,7,0,Jun+Jul
+R0583,Bengaluru,Blinkit,petrol bike,full-time,12,0,
+R0584,Delhi,Blinkit,petrol bike,full-time,11,0,
+R0585,Bengaluru,Swiggy Instamart,EV scooter,part-time,4,13,Apr
+R0586,Mumbai,Blinkit,bicycle,full-time,9,15,
+R0587,Hyderabad,Swiggy,petrol bike,full-time,11,0,
+R0588,Delhi,Zomato,petrol bike,part-time,7,0,
+R0589,Hyderabad,Blinkit,petrol bike,full-time,10,0,
+R0590,Hyderabad,Swiggy Instamart,petrol bike,full-time,10,0,
+R0591,Pune,Swiggy,bicycle,full-time,11,0,
+R0592,Bengaluru,Zepto,petrol bike,full-time,10,0,
+R0593,Hyderabad,Zomato,petrol bike,part-time,6,0,
+R0594,Chennai,Swiggy Instamart,petrol bike,full-time,11,0,
+R0595,Bengaluru,Zepto,petrol bike,full-time,12,14,Jun+Jul
+R0596,Chennai,Zomato,petrol bike,full-time,10,0,
+R0597,Delhi,Zomato,petrol bike,part-time,6,16,
+R0598,Chennai,Zepto,petrol bike,full-time,10,0,
+R0599,Hyderabad,Zepto,petrol bike,full-time,11,3,
+R0600,Chennai,Zomato,petrol bike,full-time,11,0,Nov
