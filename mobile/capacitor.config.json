@@ -1,0 +1,10 @@
+{
+  "appId": "com.financeguru.app",
+  "appName": "Finance Guru",
+  "webDir": "www",
+  "server": {
+    "url": "https://finance-guru-me2j.onrender.com",
+    "cleartext": false
+  },
+  "android": { "allowMixedContent": false }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "finance-guru-android",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Android shell for Finance Guru with a native bank-SMS reader",
+  "scripts": {
+    "sync": "cap sync android",
+    "open": "cap open android"
+  },
+  "dependencies": {
+    "@capacitor/android": "8.6.0",
+    "@capacitor/core": "8.6.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "8.6.0"
+  }
+}
