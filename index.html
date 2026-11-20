@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B0809">
+<title>Finance Guru</title>
+<style>
+:root {
+  --bg: #0B0809; --bg2: #120C0E;
+  --glass: rgba(255,255,255,.045); --glass2: rgba(255,255,255,.075); --line: rgba(255,255,255,.08); --line2: rgba(255,255,255,.14);
+  --text: #FFFFFF; --muted: #8F8A8D; --dim: #5E585B;
+  --accent: #F0364F; --accent2: #C8102E; --accent-soft: rgba(240,54,79,.14);
+  --pos: #3DDC84; --amber: #F2B544; --neg: #FF5C6F;
+  --grad: linear-gradient(180deg, #FF4D63 0%, #D9142E 100%);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; background: var(--bg); color: var(--text); overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", system-ui, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: radial-gradient(120% 60% at 50% -10%, rgba(150,22,42,.55) 0%, rgba(80,12,24,.25) 40%, transparent 70%), var(--bg); }
+#app { max-width: 430px; margin: 0 auto; height: 100vh; height: 100dvh; display: flex; flex-direction: column; position: relative; overflow: hidden; z-index: 1; }
+#screen { flex: 1; overflow-y: auto; overflow-x: hidden; padding: calc(18px + max(env(safe-area-inset-top), var(--safe-area-inset-top, 0px))) 16px 110px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+#screen::-webkit-scrollbar { display: none; }
+#screen.slide-left { animation: slL .22s ease; } #screen.slide-right { animation: slR .22s ease; }
+@keyframes slL { from { transform: translateX(36px); opacity: .3 } to { transform: none; opacity: 1 } }
+@keyframes slR { from { transform: translateX(-36px); opacity: .3 } to { transform: none; opacity: 1 } }
+
+svg.i { display: block; flex-shrink: 0; }
+
+/* Floating glass tab bar */
+#bottomnav { position: fixed; bottom: calc(14px + max(env(safe-area-inset-bottom), var(--safe-area-inset-bottom, 0px))); left: 50%; transform: translateX(-50%); width: calc(100% - 28px); max-width: 402px;
+  background: rgba(28,22,24,.72); backdrop-filter: blur(22px) saturate(160%); -webkit-backdrop-filter: blur(22px) saturate(160%);
+  border: 1px solid var(--line2); border-radius: 999px; padding: 6px; display: flex; gap: 4px; z-index: 20; box-shadow: 0 10px 40px rgba(0,0,0,.5); }
+#bottomnav.hidden { display: none; }
+.nav-btn { flex: 1; background: none; border: none; color: var(--muted); display: flex; flex-direction: column; align-items: center; gap: 3px; min-height: 54px; justify-content: center; font-size: 11px; font-weight: 600; cursor: pointer; font-family: inherit; border-radius: 999px; transition: background .2s, color .2s; }
+.nav-btn.active { color: #fff; background: rgba(255,255,255,.08); } .nav-btn.active svg { color: var(--accent); }
+
+/* Cards: frosted glass */
+.card { background: var(--glass); border-radius: 22px; padding: 16px; border: 1px solid var(--line); margin-bottom: 14px; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+.card.gold { border-color: rgba(240,54,79,.35); background: linear-gradient(160deg, rgba(240,54,79,.16), rgba(255,255,255,.03) 55%); }
+.card.green { border-color: rgba(242,181,68,.3); background: linear-gradient(160deg, rgba(242,181,68,.11), rgba(255,255,255,.03) 55%); }
+.lbl { font-size: 11px; letter-spacing: .6px; text-transform: uppercase; color: var(--muted); font-weight: 600; display: flex; align-items: center; gap: 6px; }
+.muted { color: var(--muted); } .small { font-size: 12px; } .gold-t { color: var(--accent); } .green-t { color: var(--pos); } .red-t { color: var(--neg); } .amber-t { color: var(--amber); }
+.big { font-size: 44px; font-weight: 700; color: #fff; margin: 6px 0 10px; letter-spacing: -1.5px; font-variant-numeric: tabular-nums; }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.chip { background: var(--glass2); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; font-size: 12px; color: var(--muted); display: inline-flex; align-items: center; gap: 6px; }
+.chip.w { color: #fff; } .chip.g { color: var(--pos); }
+.row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.h2 { font-size: 17px; font-weight: 600; margin: 8px 2px 10px; }
+.topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+.topbar h1 { font-size: 22px; font-weight: 700; letter-spacing: -.3px; } .topbar .sub { font-size: 12px; color: var(--muted); }
+.icon-btn { width: 46px; height: 46px; border-radius: 50%; background: var(--glass2); border: 1px solid var(--line2); color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.avatar { width: 46px; height: 46px; border-radius: 50%; background: var(--glass2); border: 1px solid var(--line2); display: flex; align-items: center; justify-content: center; color: #fff; }
+
+/* Home hero (no box, like a balance header) */
+.hero { text-align: center; padding: 6px 0 18px; }
+.hero .lbl { justify-content: center; text-transform: none; letter-spacing: 0; font-size: 14px; font-weight: 500; }
+.hero .big .dec { color: var(--dim); }
+
+/* Quick actions panel */
+.qa { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; padding: 16px 8px; margin-bottom: 14px; background: var(--glass); border: 1px solid var(--line); border-radius: 24px; }
+.qa button { background: none; border: none; color: #fff; display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; cursor: pointer; font-family: inherit; min-height: 44px; }
+.qa .circ { width: 58px; height: 58px; border-radius: 50%; background: rgba(255,255,255,.08); border: 1px solid var(--line2); display: flex; align-items: center; justify-content: center; transition: transform .12s; color: #fff; }
+.qa button:first-child .circ { background: var(--grad); border-color: transparent; box-shadow: 0 8px 24px rgba(240,54,79,.45); }
+.qa button:active .circ { transform: scale(.92); }
+
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.two .card { margin-bottom: 14px; }
+.bal { font-size: 21px; font-weight: 700; margin: 8px 0; font-variant-numeric: tabular-nums; letter-spacing: -.3px; }
+.pbar { background: rgba(255,255,255,.08); border-radius: 999px; height: 6px; overflow: hidden; margin: 8px 0; }
+.pbar > div { height: 100%; border-radius: 999px; transition: width .4s ease; }
+
+.list-row { display: flex; align-items: center; gap: 12px; padding: 11px 0; min-height: 44px; }
+.list-row + .list-row { border-top: 1px solid var(--line); }
+.list-row .ico { width: 42px; height: 42px; border-radius: 13px; background: rgba(255,255,255,.07); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #E9E4E6; }
+.list-row .ico.pos { color: var(--pos); } .list-row .ico.acc { color: var(--accent); } .list-row .ico.amb { color: var(--amber); }
+.list-row .mid { flex: 1; min-width: 0; display: flex; align-items: center; gap: 10px; } .list-row .mid > div:first-child { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 15px; }
+.list-row .mid.stack { display: block; } .list-row .mid.stack > div:first-child { font-weight: 500; }
+.list-row .mid svg { color: var(--muted); }
+.amt { font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; font-size: 15px; }
+.empty { text-align: center; color: var(--muted); padding: 22px 8px; font-size: 14px; }
+.flow-row { border-left: 3px solid; padding: 10px 14px; margin: 8px 0; display: flex; justify-content: space-between; border-radius: 4px 14px 14px 4px; background: rgba(255,255,255,.04); }
+.x-btn { width: 44px; height: 44px; border: none; background: none; color: var(--muted); cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border-radius: 12px; }
+.x-btn:hover { color: var(--neg); }
+.sm-btn { background: none; color: var(--accent); border: none; padding: 0 6px; min-height: 40px; font-weight: 600; font-size: 14px; cursor: pointer; font-family: inherit; display: inline-flex; align-items: center; gap: 4px; }
+.sm-btn.ghost { color: var(--accent); }
+.toggle { position: relative; width: 48px; height: 28px; flex-shrink: 0; }
+.toggle input { opacity: 0; width: 0; height: 0; }
+.toggle span { position: absolute; inset: 0; background: rgba(255,255,255,.14); border-radius: 999px; cursor: pointer; transition: .2s; }
+.toggle span::before { content: ""; position: absolute; width: 22px; height: 22px; left: 3px; top: 3px; background: #fff; border-radius: 50%; transition: .2s; box-shadow: 0 2px 6px rgba(0,0,0,.4); }
+.toggle input:checked + span { background: var(--accent); } .toggle input:checked + span::before { transform: translateX(20px); }
+.toggle-wrap { min-width: 48px; min-height: 44px; display: flex; align-items: center; }
+
+input, select { background: rgba(255,255,255,.06); border: 1px solid var(--line2); border-radius: 14px; color: #fff; padding: 14px 16px; font-size: 16px; width: 100%; font-family: inherit; }
+input::placeholder { color: var(--dim); }
+input:focus, select:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px var(--accent-soft); }
+select option { background: #1A1416; }
+input.amount { font-size: 32px; font-weight: 700; text-align: center; letter-spacing: -.5px; }
+.field { margin-bottom: 12px; } .field label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 6px; font-weight: 500; }
+.btn { background: var(--grad); color: #fff; border: none; border-radius: 16px; padding: 15px 24px; font-size: 16px; font-weight: 600; width: 100%; cursor: pointer; font-family: inherit; min-height: 52px; transition: transform .1s; box-shadow: 0 8px 24px rgba(240,54,79,.3); }
+.btn:active, .sm-btn:active, .seg button:active { transform: scale(.97); }
+.btn.ghost { background: rgba(255,255,255,.06); color: #fff; border: 1px solid var(--line2); box-shadow: none; }
+.btn.green { background: linear-gradient(180deg, #F7C25C, #DE9A1E); color: #1A1206; box-shadow: 0 8px 24px rgba(242,181,68,.25); }
+.btn.ghost.green { background: rgba(255,255,255,.06); color: #fff; border: 1px solid var(--line2); box-shadow: none; }
+.btn.red { background: var(--grad); color: #fff; }
+.btn:disabled { opacity: .4; }
+.btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0; }
+.seg { display: flex; background: rgba(255,255,255,.05); border: 1px solid var(--line); border-radius: 999px; padding: 4px; gap: 4px; margin-bottom: 16px; }
+.seg button { flex: 1; background: none; border: none; color: var(--muted); padding: 10px; border-radius: 999px; font-size: 14px; font-weight: 600; cursor: pointer; min-height: 42px; font-family: inherit; }
+.seg button.on { background: rgba(255,255,255,.1); color: #fff; }
+.warn { background: var(--accent-soft); color: var(--neg); border-radius: 12px; padding: 10px 12px; font-size: 13px; margin-bottom: 12px; display: flex; gap: 8px; align-items: center; }
+.pick { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border: 1px solid var(--line2); border-radius: 14px; margin-bottom: 8px; cursor: pointer; min-height: 52px; background: rgba(255,255,255,.04); color: #fff; }
+.pick.on { border-color: var(--accent); background: var(--accent-soft); }
+.pick .ico { width: 34px; height: 34px; border-radius: 10px; background: rgba(255,255,255,.07); display: flex; align-items: center; justify-content: center; }
+
+#overlay { position: fixed; inset: 0; background: rgba(0,0,0,.6); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); z-index: 40; display: none; }
+#overlay.show { display: block; animation: fade .25s; }
+@keyframes fade { from { opacity: 0 } }
+#sheet { position: fixed; left: 50%; bottom: 0; transform: translateX(-50%); width: 100%; max-width: 430px; max-height: 88vh; overflow-y: auto; background: linear-gradient(180deg, #221A1D, #151012); border: 1px solid var(--line2); border-bottom: none; border-radius: 28px 28px 0 0; padding: 10px 18px calc(24px + env(safe-area-inset-bottom)); z-index: 50; display: none; }
+#sheet.show { display: block; animation: slideUp .3s cubic-bezier(.2,.8,.2,1); }
+@keyframes slideUp { from { transform: translate(-50%, 100%) } to { transform: translate(-50%, 0) } }
+.handle { width: 40px; height: 5px; background: rgba(255,255,255,.2); border-radius: 3px; margin: 0 auto 16px; }
+.sheet-title { font-size: 21px; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; letter-spacing: -.3px; }
+.sheet-title svg { color: var(--accent); }
+#toast { position: fixed; top: 18px; left: 50%; transform: translateX(-50%) translateY(-120px); background: rgba(30,24,26,.92); backdrop-filter: blur(16px); border: 1px solid var(--line2); color: #fff; padding: 11px 18px; border-radius: 999px; font-weight: 600; font-size: 14px; z-index: 99; transition: transform .3s ease; max-width: 90%; text-align: center; border-left: 3px solid var(--pos); }
+#toast.show { transform: translateX(-50%) translateY(0); }
+
+.splash { min-height: 100%; display: flex; flex-direction: column; justify-content: center; gap: 12px; padding-bottom: 20px; }
+.logo { width: 88px; height: 88px; border-radius: 28px; background: var(--grad); display: flex; align-items: center; justify-content: center; font-size: 40px; font-weight: 700; margin: 0 auto 8px; animation: pulse 2.4s ease-in-out infinite; box-shadow: 0 16px 50px rgba(240,54,79,.45); color: #fff; }
+@keyframes pulse { 0%,100% { transform: scale(1) } 50% { transform: scale(1.05) } }
+.splash h1 { text-align: center; font-size: 30px; letter-spacing: -.6px; } .splash p.t { text-align: center; color: var(--muted); margin-bottom: 10px; }
+.wt { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+.wt .pick { margin: 0; justify-content: center; font-size: 14px; }
+
+.chart-wrap { position: relative; }
+canvas#chart { width: 100%; height: 220px; display: block; touch-action: pan-y; }
+#tip { position: absolute; background: rgba(20,15,17,.95); border: 1px solid var(--line2); color: #fff; padding: 6px 10px; border-radius: 10px; font-size: 12px; pointer-events: none; display: none; white-space: nowrap; transform: translate(-50%, -110%); font-weight: 600; }
+.legend { display: flex; gap: 16px; font-size: 12px; color: var(--muted); margin-top: 10px; justify-content: center; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; } .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.mgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.mcard { background: var(--glass); border: 1px solid var(--line); border-radius: 18px; padding: 14px; position: relative; }
+.mcard.lean { background: linear-gradient(160deg, rgba(255,92,111,.14), rgba(255,255,255,.02)); border-color: rgba(255,92,111,.35); }
+.mcard.cur { background: linear-gradient(160deg, rgba(255,255,255,.12), rgba(255,255,255,.03)); border-color: var(--line2); }
+.badge { position: absolute; top: 12px; right: 12px; background: var(--accent-soft); color: var(--neg); font-size: 9px; font-weight: 700; padding: 3px 8px; border-radius: 999px; letter-spacing: .8px; }
+.badge.g { background: rgba(255,255,255,.12); color: #fff; }
+table.cmp { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.cmp th { text-align: left; color: var(--muted); font-size: 11px; padding: 8px 6px; border-bottom: 1px solid var(--line2); font-weight: 600; }
+table.cmp td { padding: 13px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.cmp tr:last-child td { border-bottom: none; }
+table.cmp td:nth-child(2) { color: var(--neg); } table.cmp td:nth-child(3) { color: var(--pos); font-weight: 600; }
+.alert { display: flex; gap: 12px; align-items: flex-start; padding: 14px; border-radius: 18px; margin-bottom: 10px; border: 1px solid var(--line); background: var(--glass); }
+.alert .ico { width: 36px; height: 36px; border-radius: 11px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: rgba(255,255,255,.07); }
+.alert.danger { border-color: rgba(255,92,111,.4); background: linear-gradient(160deg, rgba(255,92,111,.16), rgba(255,255,255,.02)); } .alert.danger .ico { color: var(--neg); }
+.alert.warn { border-color: rgba(242,181,68,.35); background: linear-gradient(160deg, rgba(242,181,68,.12), rgba(255,255,255,.02)); } .alert.warn .ico { color: var(--amber); }
+.alert.ok { border-color: rgba(61,220,132,.35); background: linear-gradient(160deg, rgba(61,220,132,.12), rgba(255,255,255,.02)); } .alert.ok .ico { color: var(--pos); }
+.alert.warn b { color: var(--amber); } .alert.danger b { color: var(--neg); } .alert.ok b { color: var(--pos); }
+.alert b { display: block; font-size: 14px; margin-bottom: 3px; } .alert p { font-size: 13px; color: #D9D3D6; line-height: 1.45; }
+.sms-cta { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+.sms-cta .ico { width: 42px; height: 42px; border-radius: 13px; background: var(--accent-soft); color: var(--accent); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.sms { border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; margin-bottom: 8px; background: rgba(255,255,255,.035); transition: border-color .3s, background .3s; }
+.sms .from { font-size: 11px; color: var(--muted); font-weight: 600; letter-spacing: .3px; display: flex; justify-content: space-between; gap: 8px; }
+.sms .txt { font-size: 12.5px; color: #CFC9CC; line-height: 1.4; margin-top: 4px; word-break: break-word; }
+.sms .res { margin-top: 8px; font-size: 13px; display: none; align-items: center; gap: 8px; }
+.sms.ok { border-color: rgba(61,220,132,.45); } .sms.ok .res { display: flex; }
+.sms.skip { opacity: .55; } .sms.skip .res { display: flex; color: var(--muted); }
+.tag { font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 999px; background: rgba(255,255,255,.1); letter-spacing: .4px; }
+textarea { width: 100%; background: rgba(255,255,255,.05); border: 1px solid var(--line2); border-radius: 14px; color: #fff; padding: 12px; font: inherit; font-size: 14px; resize: vertical; min-height: 80px; }
+.fc-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; } .fc-row + .fc-row { border-top: 1px solid var(--line); }
+.fc-row .m { width: 64px; font-weight: 600; white-space: nowrap; } .fc-row .rng { flex: 1; font-size: 12px; color: var(--muted); }
+.prob { font-size: 12px; font-weight: 700; padding: 3px 9px; border-radius: 999px; background: rgba(255,255,255,.08); white-space: nowrap; }
+.prob.hi { background: var(--accent-soft); color: var(--neg); } .prob.mid { background: rgba(242,181,68,.15); color: var(--amber); }
+.stat { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; text-align: center; }
+.stat div { background: rgba(255,255,255,.05); border-radius: 12px; padding: 10px 4px; } .stat b { display: block; font-size: 18px; } .stat span { font-size: 10.5px; color: var(--muted); }
+.step { display: flex; justify-content: space-between; gap: 10px; padding: 10px 0; } .step + .step { border-top: 1px solid var(--line); } .step small { display: block; color: var(--muted); font-size: 12px; margin-top: 2px; }
+.info li { margin: 10px 0 0 18px; font-size: 14px; line-height: 1.5; color: #D9D3D6; }
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="screen"></div>
+  <nav id="bottomnav" class="hidden">
+    <button class="nav-btn" data-tab="home"><span class="ic" data-i="home"></span>Home</button>
+    <button class="nav-btn" data-tab="budget"><span class="ic" data-i="wallet"></span>Budget</button>
+    <button class="nav-btn" data-tab="buffers"><span class="ic" data-i="shield"></span>Buffers</button>
+    <button class="nav-btn" data-tab="trends"><span class="ic" data-i="chart"></span>Trends</button>
+  </nav>
+</div>
+<div id="overlay"></div>
+<div id="sheet"></div>
+<div id="toast"></div>
+
+<script>
+/* ================= 1. STATE & CONFIG ================= */
+const STORE_KEY = 'fg_v2';
+const VERSION = 'v2.0';
+const TABS = ['home', 'budget', 'buffers', 'trends'];
+/* Line icons (24×24, stroke = currentColor) */
+const ICONS = {
+  home: '<path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',
+  wallet: '<path d="M19 7V5.5A1.5 1.5 0 0 0 17.5 4h-12A2.5 2.5 0 0 0 3 6.5v11A2.5 2.5 0 0 0 5.5 20h14a1.5 1.5 0 0 0 1.5-1.5v-10A1.5 1.5 0 0 0 19.5 7H5.5A2.5 2.5 0 0 1 3 4.5"/><circle cx="16.5" cy="13.5" r="1.2"/>',
+  shield: '<path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.4 7.5 9.5 4.3-1.1 7.5-4.9 7.5-9.5V6z"/><path d="m9 12 2.2 2.2L15.5 10"/>',
+  chart: '<path d="M3 21h18M6.5 17v-5M11 17V6M15.5 17v-8M20 17v-3"/>',
+  plus: '<path d="M12 5v14M5 12h14"/>',
+  send: '<path d="M7 17 17 7M8.5 7H17v8.5"/>',
+  receive: '<path d="M17 7 7 17M15.5 17H7V8.5"/>',
+  save: '<path d="M12 3.5v11m0 0-4.5-4.5m4.5 4.5 4.5-4.5M4.5 20.5h15"/>',
+  draw: '<path d="M12 20.5v-11m0 0L7.5 14M12 9.5l4.5 4.5M4.5 3.5h15"/>',
+  settings: '<path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/>',
+  user: '<circle cx="12" cy="8" r="4"/><path d="M4.5 21c1.4-3.8 4.3-5.8 7.5-5.8s6.1 2 7.5 5.8"/>',
+  cart: '<path d="M3 4h2.2l2.3 11h10.3L20 8H6.4"/><circle cx="9" cy="19.5" r="1.3"/><circle cx="17" cy="19.5" r="1.3"/>',
+  phone: '<rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18h2"/>',
+  fuel: '<path d="M4.5 21V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v16M3 21h13M4.5 10h10M14.5 8l3 3v6.5a1.5 1.5 0 0 0 3 0V9l-3-3"/>',
+  doc: '<path d="M14 3H6.5a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1V7.5z"/><path d="M14 3v4.5h4.5M9 13h6M9 17h6"/>',
+  bulb: '<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.4 1 1.2 1 2V16h5v-.1c0-.8.4-1.6 1-2A6 6 0 0 0 12 3z"/>',
+  book: '<path d="M4 19.5V5a2 2 0 0 1 2-2h14v15H6a2 2 0 0 0-2 2 1.5 1.5 0 0 0 1.5 1.5H20"/>',
+  pill: '<rect x="2.5" y="8.5" width="19" height="7" rx="3.5" transform="rotate(-45 12 12)"/><path d="m8.6 8.6 6.8 6.8"/>',
+  bus: '<rect x="4" y="3" width="16" height="15" rx="3"/><path d="M4 11h16M8 18v3M16 18v3"/><circle cx="8" cy="14.5" r=".6"/><circle cx="16" cy="14.5" r=".6"/>',
+  box: '<path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/>',
+  calendar: '<rect x="3.5" y="5" width="17" height="16" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
+  trend: '<path d="m3 17 6-6 4 4 8-8M15 7h6v6"/>',
+  card: '<rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19M6 15h4"/>',
+  close: '<path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/>',
+  trash: '<path d="M4 7h16M9.5 7V4.5h5V7M6 7l1 13h10l1-13M10 11v5M14 11v5"/>',
+  alert: '<path d="M12 3.5 2.5 20h19z"/><path d="M12 10v4M12 17h.01"/>',
+  life: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.8"/><path d="m5.6 5.6 3.7 3.7M14.7 14.7l3.7 3.7M18.4 5.6l-3.7 3.7M9.3 14.7l-3.7 3.7"/>',
+  check: '<path d="m5 12.5 4.5 4.5L19 7.5"/>',
+  chevron: '<path d="m9 6 6 6-6 6"/>',
+  msg: '<path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v10a1.5 1.5 0 0 1-1.5 1.5H9l-5 4z"/><path d="M8 9h8M8 12.5h5"/>',
+  spark: '<path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/>'
+};
+/* Old data stored emoji; map them to icon names */
+const EMOJI_ICON = { '🏠': 'home', '🛒': 'cart', '📱': 'phone', '⛽': 'fuel', '📋': 'doc', '💡': 'bulb', '🎓': 'book', '💊': 'pill', '🚌': 'bus', '📦': 'box', '📤': 'send', '💰': 'receive', '🛡': 'shield', '📥': 'draw' };
+function ic(name, size = 20, sw = 1.8) {
+  const k = ICONS[name] ? name : (EMOJI_ICON[name] || 'box');
+  return `<svg class="i" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[k]}</svg>`;
+}
+const LEAN_LIMIT = 15000;
+const WORKER_TYPES = [
+  { id: 'delivery', label: 'Delivery' }, { id: 'driver', label: 'Driver' },
+  { id: 'construction', label: 'Construction' }, { id: 'domestic', label: 'Domestic' },
+  { id: 'vendor', label: 'Vendor' }, { id: 'other', label: 'Other' }
+];
+function defaultState() {
+  return {
+    onboarded: false, name: '', city: '', workerType: 'delivery',
+    expenses: [
+      { id: 1, name: 'Rent', amount: 5000, icon: 'home', active: true },
+      { id: 2, name: 'Groceries', amount: 3000, icon: 'cart', active: true },
+      { id: 3, name: 'Phone Bill', amount: 399, icon: 'phone', active: true }
+    ],
+    totalExpenses: 8399, monthIncome: 0, incomeLog: [],
+    leanBal: 0, leanTarget: 30000, emerBal: 0, emerTarget: 15000,
+    history: [], activity: [], bufferTx: [], monthKey: monthKeyOf(new Date())
+  };
+}
+let STATE = defaultState();
+let UI = { tab: 'home', trendView: 'chart', editExp: false, chartBars: [] };
+
+/* ================= 2. HELPERS ================= */
+function monthKeyOf(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0'); }
+function todayISO() { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+function fmt(n) { return '₹' + Math.round(Number(n) || 0).toLocaleString('en-IN'); }
+function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+/* Local cache: last state from the server + login token (so the app opens instantly) */
+let TOKEN = null;
+function persist() { try { localStorage.setItem(STORE_KEY, JSON.stringify(STATE)); if (TOKEN) localStorage.setItem(STORE_KEY + '_token', TOKEN); } catch (e) {} }
+function loadState() {
+  try {
+    TOKEN = localStorage.getItem(STORE_KEY + '_token');
+    const raw = localStorage.getItem(STORE_KEY);
+    if (raw && TOKEN) STATE = { ...defaultState(), ...JSON.parse(raw) };
+  } catch (e) {}
+}
+function clearSession() {
+  TOKEN = null; STATE = defaultState();
+  try { localStorage.removeItem(STORE_KEY); localStorage.removeItem(STORE_KEY + '_token'); } catch (e) {}
+}
+
+/* ---- Backend API client ---- */
+const API_BASE = location.protocol === 'file:' ? 'http://localhost:3000/api' : '/api';
+let busy = false;
+async function api(method, path, body) {
+  const headers = { 'Content-Type': 'application/json' };
+  if (TOKEN) headers.Authorization = 'Bearer ' + TOKEN;
+  let res;
+  try { res = await fetch(API_BASE + path, { method, headers, body: body ? JSON.stringify(body) : undefined }); }
+  catch (e) { throw new Error('Cannot reach the server. Is it running?'); }
+  const data = await res.json().catch(() => ({}));
+  if (res.status === 401 && TOKEN) { clearSession(); closeSheet(); render(); throw new Error('Session expired. Please log in.'); }
+  if (!res.ok) throw new Error(data.error || 'Request failed');
+  if (data.token) TOKEN = data.token;
+  if (data.state) { STATE = { ...defaultState(), ...data.state }; persist(); }
+  return data;
+}
+/* Run an API call from a button: blocks double taps, shows errors as a toast */
+async function act(btn, fn, okMsg) {
+  if (busy) return; busy = true;
+  const label = btn && btn.textContent; if (btn) { btn.disabled = true; btn.textContent = 'Please wait…'; }
+  try { const d = await fn(); closeSheet(); render(); if (okMsg) toast(okMsg); return d || true; }
+  catch (e) { toast(e.message, '#FF5C6F'); if (!document.getElementById('sheet').classList.contains('show')) render(); }
+  finally { busy = false; if (btn && btn.isConnected) { btn.disabled = false; btn.textContent = label; } }
+}
+function currentMonth() { return new Date().toLocaleString('en-IN', { month: 'short', year: '2-digit' }); }
+function monthYearLong() { return new Date().toLocaleString('en-IN', { month: 'long', year: 'numeric' }); }
+function shortDate(iso) { const d = new Date(iso + 'T00:00:00'); return isNaN(d) ? iso : d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' }); }
+function calcSafeToSpend() {
+  const inc = STATE.monthIncome, exp = STATE.totalExpenses;
+  const pct = inc > 20000 ? 0.15 : inc > 15000 ? 0.10 : 0;
+  const save = Math.round(inc * pct);
+  const safe = Math.max(0, inc - exp - save);
+  return { safe, save, pct, inc, exp };
+}
+function recalcExpenses() { STATE.totalExpenses = STATE.expenses.filter(e => e.active).reduce((s, e) => s + e.amount, 0); }
+function spentThisMonth() {
+  const k = monthKeyOf(new Date());
+  return STATE.activity.filter(a => a.type === 'expense' && a.date.slice(0, 7) === k).reduce((s, a) => s + a.amount, 0);
+}
+function incomeLogTotal() { return STATE.incomeLog.reduce((s, e) => s + e.amount, 0); }
+function addActivity(type, amount, note, icon) {
+  STATE.activity.unshift({ date: todayISO(), type, amount, note, icon });
+  STATE.activity = STATE.activity.slice(0, 100);
+}
+function addBufferTx(fund, kind, amount, note) {
+  STATE.bufferTx.unshift({ fund, kind, amount, note, date: todayISO() });
+  STATE.bufferTx = STATE.bufferTx.slice(0, 100);
+}
+function pct(a, b) { return b > 0 ? Math.min(100, Math.round(a / b * 100)) : 0; }
+function toast(msg, color) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.style.borderLeftColor = color || '#3DDC84'; t.classList.add('show');
+  clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove('show'), 2000);
+}
+function countUp(el, to) {
+  const from = Number(el.dataset.val || 0); el.dataset.val = to;
+  if (from === to) { el.textContent = fmt(to); return; }
+  const start = performance.now();
+  function step(now) {
+    const p = Math.min(1, (now - start) / 600), e = 1 - Math.pow(1 - p, 3);
+    el.textContent = fmt(from + (to - from) * e);
+    if (p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+function chartData() {
+  const now = new Date(), curLabel = now.toLocaleString('en-US', { month: 'short' }), curYear = String(now.getFullYear()).slice(2);
+  const data = STATE.history.map(h => ({ ...h }));
+  const last = data[data.length - 1];
+  if (last && last.month === curLabel && last.year === curYear) { last.income = STATE.monthIncome; last.saved = calcSafeToSpend().save; }
+  else data.push({ month: curLabel, year: curYear, income: STATE.monthIncome, saved: calcSafeToSpend().save, leanDep: 0, emerDep: 0 });
+  const hist = data.slice(-12).map((m, i, arr) => {
+    const current = i === arr.length - 1;
+    return { ...m, current, lean: !current && m.income < LEAN_LIMIT };
+  });
+  return hist;
+}
+function chartDataWithForecast() {
+  const hist = chartData().slice(-9);
+  const fc = ((STATE.insights && STATE.insights.outlook) || []).slice(0, 3).map(f => ({ month: f.label.split(' ')[0], year: f.key.slice(2, 4), income: f.amount, forecast: true, pLean: f.pLean, low: f.low, high: f.high }));
+  return hist.concat(fc);
+}
+
+/* ================= 3. DEMO DATA ================= */
+/* Demo data is seeded by the server (POST /api/auth/demo → user "raju" / "raju123").
+   demoStateReference() documents the same data shape the server returns. */
+async function loadDemo(btn) {
+  UI.tab = 'home';
+  await act(btn, () => api('POST', '/auth/demo'), 'Demo loaded — welcome, Raju!');
+}
+function demoStateReference() {
+  return {
+    onboarded: true, name: 'Raju', city: 'Bengaluru', workerType: 'delivery',
+    expenses: [
+      { id: 1, name: 'Rent', amount: 5500, icon: 'home', active: true },
+      { id: 2, name: 'Groceries', amount: 3000, icon: 'cart', active: true },
+      { id: 3, name: 'Phone Bill', amount: 399, icon: 'phone', active: true },
+      { id: 4, name: 'Fuel', amount: 800, icon: 'fuel', active: true },
+      { id: 5, name: 'EMI', amount: 1800, icon: 'doc', active: true },
+      { id: 6, name: 'Electricity', amount: 600, icon: 'bulb', active: true }
+    ],
+    totalExpenses: 12099, monthIncome: 23400,
+    incomeLog: [
+      { date: '2026-11-18', amount: 1200, note: 'Evening deliveries' },
+      { date: '2026-11-19', amount: 980, note: 'Morning + afternoon' },
+      { date: '2026-11-20', amount: 1150, note: '' }
+    ],
+    leanBal: 12400, leanTarget: 30000, emerBal: 8200, emerTarget: 15000,
+    history: [
+      { month: 'Dec', year: '25', income: 10200, saved: 0, leanDep: 9000, emerDep: 0 },
+      { month: 'Jan', year: '26', income: 22400, saved: 3360, leanDep: 0, emerDep: 0 },
+      { month: 'Feb', year: '26', income: 24800, saved: 3720, leanDep: 0, emerDep: 0 },
+      { month: 'Mar', year: '26', income: 26200, saved: 3930, leanDep: 0, emerDep: 0 },
+      { month: 'Apr', year: '26', income: 23100, saved: 3465, leanDep: 0, emerDep: 0 },
+      { month: 'May', year: '26', income: 21800, saved: 2180, leanDep: 0, emerDep: 0 },
+      { month: 'Jun', year: '26', income: 24500, saved: 3675, leanDep: 0, emerDep: 0 },
+      { month: 'Jul', year: '26', income: 27800, saved: 4170, leanDep: 0, emerDep: 0 },
+      { month: 'Aug', year: '26', income: 9200, saved: 0, leanDep: 9200, emerDep: 0 },
+      { month: 'Sep', year: '26', income: 11500, saved: 0, leanDep: 8000, emerDep: 0 },
+      { month: 'Oct', year: '26', income: 23400, saved: 3510, leanDep: 0, emerDep: 0 },
+      { month: 'Nov', year: '26', income: 23400, saved: 3510, leanDep: 0, emerDep: 0 }
+    ],
+    activity: [
+      { date: '2026-11-20', type: 'income', amount: 1150, note: 'Deliveries', icon: 'receive' },
+      { date: '2026-11-19', type: 'income', amount: 980, note: 'Morning shift', icon: 'receive' },
+      { date: '2026-11-18', type: 'income', amount: 1200, note: 'Evening deliveries', icon: 'receive' },
+      { date: '2026-11-15', type: 'buffer_save', amount: 3510, note: 'Monthly savings', icon: 'shield' },
+      { date: '2026-11-01', type: 'expense', amount: 5500, note: 'Rent paid', icon: 'home' }
+    ],
+    bufferTx: [
+      { fund: 'lean', kind: 'dep', amount: 3510, note: 'Monthly savings', date: '2026-11-15' },
+      { fund: 'lean', kind: 'dep', amount: 3510, note: 'October savings', date: '2026-10-28' },
+      { fund: 'emer', kind: 'dep', amount: 2000, note: 'Top-up', date: '2026-10-20' },
+      { fund: 'lean', kind: 'wd', amount: 8000, note: 'Rent shortfall (Sep)', date: '2026-09-05' },
+      { fund: 'emer', kind: 'dep', amount: 6200, note: 'Initial deposit', date: '2026-07-30' }
+    ],
+    monthKey: monthKeyOf(new Date())
+  };
+}
+
+/* ================= 4. RENDER FUNCTIONS ================= */
+function render(dir) {
+  const scr = document.getElementById('screen'), nav = document.getElementById('bottomnav');
+  if (!STATE.onboarded) { nav.classList.add('hidden'); scr.innerHTML = renderSplash(); bindSplash(); return; }
+  nav.classList.remove('hidden');
+  nav.querySelectorAll('.nav-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === UI.tab));
+  scr.innerHTML = ({ home: renderHome, budget: renderBudget, buffers: renderBuffers, trends: renderTrends })[UI.tab]();
+  if (dir) { scr.classList.remove('slide-left', 'slide-right'); void scr.offsetWidth; scr.classList.add(dir); }
+  if (UI.tab === 'home') { const h = document.getElementById('heroNum'); if (h) { h.dataset.val = render._lastSafe || 0; countUp(h, calcSafeToSpend().safe); render._lastSafe = calcSafeToSpend().safe; } }
+  if (UI.tab === 'trends' && UI.trendView === 'chart') setupChart();
+}
+
+function renderSplash() {
+  return `<div class="splash">
+    <div class="logo">₹</div>
+    <h1>Finance Guru</h1>
+    <p class="t">Steady money for unsteady income.</p>
+    <div class="seg"><button data-auth="signup" class="${UI.auth !== 'login' ? 'on' : ''}">Sign up</button><button data-auth="login" class="${UI.auth === 'login' ? 'on' : ''}">Log in</button></div>
+    <form id="ob_form" autocomplete="on">
+    <div class="field"><label>Username</label><input id="ob_user" placeholder="e.g. raju_blr" autocomplete="username" autocapitalize="off" required></div>
+    <div class="field"><label>Password</label><input id="ob_pass" type="password" placeholder="At least 6 characters" autocomplete="${UI.auth === 'login' ? 'current-password' : 'new-password'}" required></div>
+    ${UI.auth === 'login' ? '' : `
+    <div class="field"><label>Your name</label><input id="ob_name" placeholder="e.g. Raju" autocomplete="name"></div>
+    <div class="field"><label>City</label><input id="ob_city" placeholder="e.g. Bengaluru" autocomplete="address-level2"></div>
+    <div class="field"><label>What work do you do?</label>
+      <div class="wt">${WORKER_TYPES.map(w => `<div class="pick ${w.id === 'delivery' ? 'on' : ''}" data-wt="${w.id}">${w.label}</div>`).join('')}</div></div>`}
+    <button class="btn" id="ob_go" type="submit">${UI.auth === 'login' ? 'Log In' : 'Create Account'}</button>
+    </form>
+    <button class="btn ghost" id="ob_demo">Load Demo (Raju)</button>
+    ${NATIVE_SMS || location.protocol === 'file:' ? '' : `<a class="btn ghost" href="/download/FinanceGuru.apk" style="display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;margin-top:10px">${ic('phone', 18)}Get the Android app</a>`}
+  </div>`;
+}
+function bindSplash() {
+  let wt = 'delivery';
+  document.querySelectorAll('[data-auth]').forEach(b => b.onclick = () => { UI.auth = b.dataset.auth; render(); });
+  document.querySelectorAll('[data-wt]').forEach(p => p.onclick = () => {
+    wt = p.dataset.wt; document.querySelectorAll('[data-wt]').forEach(x => x.classList.toggle('on', x === p));
+  });
+  document.getElementById('ob_form').onsubmit = e => {
+    e.preventDefault();
+    const v = id => (document.getElementById(id) || { value: '' }).value.trim();
+    const body = { username: v('ob_user'), password: document.getElementById('ob_pass').value };
+    if (!body.username || !body.password) { toast('Enter username and password', '#FF5C6F'); return; }
+    UI.tab = 'home';
+    if (UI.auth === 'login') {
+      act(document.getElementById('ob_go'), async () => { const d = await api('POST', '/auth/login', body); if (d.wrapUp) setTimeout(() => showWrapUp(d.wrapUp), 350); }, 'Welcome back!');
+    } else {
+      Object.assign(body, { name: v('ob_name'), city: v('ob_city'), workerType: wt });
+      if (!body.name) { toast('Please enter your name', '#FF5C6F'); return; }
+      act(document.getElementById('ob_go'), () => api('POST', '/auth/register', body), 'Welcome, ' + body.name + '!');
+    }
+  };
+  document.getElementById('ob_demo').onclick = e => loadDemo(e.currentTarget);
+}
+
+function bufferMini(kind) {
+  const lean = kind === 'lean', bal = lean ? STATE.leanBal : STATE.emerBal, tgt = lean ? STATE.leanTarget : STATE.emerTarget, col = lean ? 'var(--accent)' : 'var(--amber)';
+  return `<div class="card" data-goto="buffers" style="cursor:pointer">
+    <div class="lbl" style="color:${col}">${ic(lean ? 'shield' : 'life', 15)}${lean ? 'Lean fund' : 'Emergency'}</div>
+    <div class="bal">${fmt(bal)}</div>
+    <div class="pbar"><div style="background:${col};width:${pct(bal, tgt)}%"></div></div>
+    <div class="small muted">${bal >= tgt ? 'Goal reached' : fmt(tgt - bal) + ' to goal'}</div></div>`;
+}
+function activityRow(a) {
+  const plus = a.type === 'income' || a.type === 'buffer_draw';
+  const t = { income: ['receive', 'pos'], buffer_save: ['shield', 'acc'], buffer_draw: ['draw', 'amb'] }[a.type] || [a.icon || 'send', ''];
+  return `<div class="list-row"><div class="ico ${t[1]}">${ic(t[0])}</div>
+    <div class="mid stack"><div>${esc(a.note || a.type)}</div><div class="small muted">${shortDate(a.date)}</div></div>
+    <div class="amt ${plus ? 'green-t' : ''}">${plus ? '+' : '−'}${fmt(a.amount)}</div></div>`;
+}
+function renderHome() {
+  const s = calcSafeToSpend();
+  return `<div class="topbar"><div class="row" style="gap:12px"><div class="avatar">${ic('user')}</div><div><div class="sub">Namaste</div><h1>${esc(STATE.name)}</h1></div></div>
+      <button class="icon-btn" data-act="settings" aria-label="Settings">${ic('settings')}</button></div>
+    <div class="hero">
+      <div class="lbl">Safe to spend this month</div>
+      ${s.inc > 0 ? `<div class="big" id="heroNum">${fmt(s.safe)}</div>
+        <div class="chips"><span class="chip w">Income: ${fmt(s.inc)}</span><span class="chip g">Saving: ${fmt(s.save)} (${Math.round(s.pct * 100)}%)</span></div>
+        ${s.inc - s.exp - s.save < 0 ? `<div class="small red-t" style="margin-top:8px">Expenses exceed income by ${fmt(s.exp + s.save - s.inc)} — consider your Lean Fund.</div>` : ''}`
+      : `<div class="big" id="heroNum">${fmt(0)}</div><div class="muted small">Log today's income to see this</div>`}
+    </div>
+    <div class="qa">
+      <button data-act="income"><span class="circ">${ic('plus', 24, 2)}</span>Log Income</button>
+      <button data-act="expense"><span class="circ">${ic('send', 22)}</span>Pay Expense</button>
+      <button data-act="save"><span class="circ">${ic('save', 22)}</span>Save</button>
+      <button data-act="draw"><span class="circ">${ic('draw', 22)}</span>Withdraw</button>
+    </div>
+    ${homeInsights()}
+    <div class="two">${bufferMini('lean')}${bufferMini('emer')}</div>
+    <div class="card">
+      <div class="list-row"><div class="mid">${ic('calendar', 18)}<div>Month</div></div><div class="amt">${monthYearLong()}</div></div>
+      <div class="list-row"><div class="mid">${ic('card', 18)}<div>Spent on expenses</div></div><div class="amt">${fmt(spentThisMonth())}</div></div>
+      <div class="list-row"><div class="mid">${ic('trend', 18)}<div>Total income logged</div></div><div class="amt green-t">${fmt(STATE.monthIncome)}</div></div>
+    </div>
+    <div class="h2">Recent Activity</div>
+    <div class="card">${STATE.activity.length ? STATE.activity.slice(0, 5).map(activityRow).join('') : `<div class="empty">No activity yet. Start by logging today's income.</div>`}</div>`;
+}
+
+/* ================= INSIGHTS (forecast, alerts, surplus) ================= */
+function alertCard(a) {
+  return `<div class="alert ${a.level}"><div class="ico">${ic(a.icon, 19)}</div><div><b>${esc(a.title)}</b><p>${esc(a.text)}</p></div></div>`;
+}
+function surplusCard(sp) {
+  return `<div class="card" style="border-color:rgba(61,220,132,.35)">
+    <div class="lbl green-t">${ic('spark', 15)}Surplus plan · ${fmt(sp.amount)} extra</div>
+    <div class="small muted" style="margin:6px 0 4px">Expected this month ${fmt(sp.expected)}. Here's a smart way to use the extra:</div>
+    ${sp.steps.map(st => `<div class="step"><div>${esc(st.label)}<small>${esc(st.why)}</small></div><b class="${st.id === 'enjoy' ? '' : 'green-t'}">${fmt(st.amount)}</b></div>`).join('')}
+    ${sp.steps.some(st => st.id === 'emer' || st.id === 'lean') ? `<button class="btn" data-act="surplus" style="margin-top:10px">Move to buffers</button>` : ''}
+    <div class="small muted" style="margin-top:10px">General guidance only, not investment advice. For investments, consult a SEBI-registered adviser.</div></div>`;
+}
+function homeInsights() {
+  const I = STATE.insights; let h = '';
+  if (I && I.alerts.length) h += `<div class="row"><div class="h2">Alerts</div><span class="small muted">${I.alerts.length} active</span></div>` + I.alerts.slice(0, 3).map(alertCard).join('');
+  if (I && I.surplus) h += surplusCard(I.surplus);
+  h += `<div class="card sms-cta" data-act="sms"><div class="ico">${ic('msg', 21)}</div>
+    <div style="flex:1"><b style="font-size:15px">Import from SMS</b><div class="small muted">Auto-log income &amp; spends from bank messages</div></div>${ic('chevron', 18)}</div>`;
+  return h;
+}
+function probTag(p) { const v = Math.round(p * 100); return `<span class="prob ${p >= 0.5 ? 'hi' : p >= 0.3 ? 'mid' : ''}">${v}% lean</span>`; }
+function forecastCards() {
+  const I = STATE.insights; if (!I) return '';
+  const bt = I.model.backtest, sp = I.seasonPlan;
+  return `<div class="card"><div class="lbl">${ic('spark', 15)}Lean Month Predictor</div>
+      <div class="small muted" style="margin:6px 0 2px">${I.personal ? 'Your own 2-year pattern' : 'Typical pattern'} + ${esc(I.city === 'all' ? 'all-India' : I.city)} delivery riders</div>
+      ${I.outlook.slice(0, 3).map(f => `<div class="fc-row"><div class="m">${f.label}</div><div class="rng">${fmt(f.low)} – ${fmt(f.high)}</div><b>${fmt(f.amount)}</b>${probTag(f.pLean)}</div>`).join('')}
+      ${sp ? `<div class="alert ${sp.need > 0 ? 'warn' : 'ok'}" style="margin:10px 0 0"><div class="ico">${ic('calendar', 19)}</div><div><b>Next lean season: ${sp.months.join(', ')}</b>
+        <p>${sp.need > 0 ? `Save ${fmt(sp.perMonth)}/month for ${sp.firstIn} month${sp.firstIn > 1 ? 's' : ''} to cover the ${fmt(sp.gap)} drop.` : `Your Lean Fund already covers the ${fmt(sp.gap)} drop.`}</p></div></div>` : ''}
+    </div>
+    <div class="card"><div class="lbl">${ic('check', 15)}How accurate is it?</div>
+      <div class="small muted" style="margin-top:6px">Backtested on ${I.model.riders} Indian delivery riders across ${I.model.cities.length} cities, ${bt.predictions.toLocaleString('en-IN')} real-world-style monthly predictions.</div>
+      <div class="stat"><div><b class="green-t">${bt.seasonalLeanRecall}%</b><span>seasonal lean months caught</span></div>
+        <div><b>${bt.medianApe}%</b><span>typical error</span></div>
+        <div><b>${bt.accuracy}%</b><span>lean / not-lean correct</span></div></div>
+      <div class="small muted" style="margin-top:10px">Sudden shocks (illness, bike repair) can't be predicted — that's what the Emergency Fund is for.</div></div>`;
+}
+
+function renderBudget() {
+  const s = calcSafeToSpend();
+  const log = STATE.incomeLog.map((e, i) => ({ ...e, i })).reverse();
+  return `<div class="topbar"><h1>Budget</h1><span class="chip">${currentMonth()}</span></div>
+    <div class="card">
+      <div class="lbl">Income flow</div>
+      <div class="flow-row" style="border-color:#fff"><span>Monthly Income</span><b>${fmt(s.inc)}</b></div>
+      <div class="flow-row" style="border-color:var(--accent)"><span class="muted">→ Savings (${Math.round(s.pct * 100)}%)</span><b class="gold-t">${fmt(s.save)}</b></div>
+      <div class="flow-row" style="border-color:rgba(255,255,255,.25)"><span class="muted">→ Fixed Expenses</span><b class="muted">${fmt(s.exp)}</b></div>
+      <div class="flow-row" style="border-color:var(--pos)"><span class="muted">→ Safe to Spend</span><b class="green-t" style="font-size:18px">${fmt(s.safe)}</b></div>
+    </div>
+    <div class="row"><div class="h2">Income This Month</div><button class="sm-btn" data-act="income">+ Add Entry</button></div>
+    <div class="card">
+      ${log.length ? log.map(e => `<div class="list-row"><div class="mid stack"><div>${esc(e.note || 'Income')}</div><div class="small muted">${shortDate(e.date)}</div></div>
+        <div class="amt green-t">${fmt(e.amount)}</div><button class="x-btn" data-delinc="${e.id}" aria-label="Delete">${ic('close', 18)}</button></div>`).join('')
+        : `<div class="empty">No entries yet this month.</div>`}
+      <div class="row" style="padding-top:10px;border-top:1px solid #2A2A45;margin-top:4px"><span class="muted">Total</span><b>${fmt(incomeLogTotal())}</b></div>
+      ${STATE.monthIncome !== incomeLogTotal() ? `<div class="small muted" style="margin-top:6px">Month income incl. earlier entries: ${fmt(STATE.monthIncome)}</div>` : ''}
+    </div>
+    <div class="row"><div class="h2">Fixed Expenses</div><button class="sm-btn ghost" data-act="editexp">${UI.editExp ? 'Done' : 'Edit'}</button></div>
+    <div class="card">
+      ${STATE.expenses.length ? STATE.expenses.map(e => `<div class="list-row" style="${e.active ? '' : 'opacity:.45'}"><div class="ico">${ic(e.icon)}</div>
+        <div class="mid"><div>${esc(e.name)}</div></div>
+        ${UI.editExp ? `<input type="number" inputmode="numeric" value="${e.amount}" data-expamt="${e.id}" style="width:100px;padding:8px 10px;font-size:14px">
+          <button class="x-btn" data-delexp="${e.id}" aria-label="Delete">${ic('trash', 18)}</button>`
+          : `<div class="amt">${fmt(e.amount)}</div><label class="toggle-wrap"><span class="toggle"><input type="checkbox" data-togexp="${e.id}" ${e.active ? 'checked' : ''}><span></span></span></label>`}
+      </div>`).join('') : `<div class="empty">No expenses added.</div>`}
+      <button class="btn ghost" data-act="addexp" style="margin-top:12px">+ Add Expense</button>
+      <div class="row" style="padding-top:12px"><span class="muted">Total active</span><b>${fmt(STATE.totalExpenses)}</b></div>
+    </div>`;
+}
+
+function fundCard(kind) {
+  const lean = kind === 'lean', bal = lean ? STATE.leanBal : STATE.emerBal, tgt = lean ? STATE.leanTarget : STATE.emerTarget;
+  const col = lean ? 'var(--accent)' : 'var(--amber)', tx = STATE.bufferTx.filter(t => t.fund === kind).slice(0, 5);
+  return `<div class="card ${lean ? 'gold' : 'green'}">
+    <div class="lbl" style="color:${col}">${ic(lean ? 'shield' : 'life', 15)}${lean ? 'Lean Month Fund' : 'Emergency Fund'}</div>
+    <div class="big" style="color:#fff">${fmt(bal)}</div>
+    <div class="pbar"><div style="background:${col};width:${pct(bal, tgt)}%"></div></div>
+    <div class="row small"><span class="muted">${pct(bal, tgt)}% of goal</span><span class="muted">Target: <b style="color:#fff">${fmt(tgt)}</b></span></div>
+    <div class="btns"><button class="btn ${lean ? '' : 'green'}" data-dep="${kind}">Deposit</button><button class="btn ghost ${lean ? '' : 'green'}" data-wd="${kind}">Withdraw</button></div>
+    <div class="lbl" style="margin-top:6px">Recent transactions</div>
+    ${tx.length ? tx.map(t => `<div class="list-row"><div class="mid stack"><div>${esc(t.note)}</div><div class="small muted">${shortDate(t.date)}</div></div>
+      <div class="amt ${t.kind === 'dep' ? 'green-t' : 'red-t'}">${t.kind === 'dep' ? '+' : '−'}${fmt(t.amount)}</div></div>`).join('') : `<div class="empty">No transactions yet.</div>`}
+  </div>`;
+}
+function renderBuffers() {
+  return `<div class="topbar"><h1>Buffers</h1><span class="chip">Total ${fmt(STATE.leanBal + STATE.emerBal)}</span></div>
+    ${fundCard('lean')}${fundCard('emer')}
+    <div class="card info"><div class="h2" style="margin-top:0">When to use each buffer</div>
+      <ul><li><b class="gold-t">Lean Fund:</b> When monthly income drops below ₹15,000 in a lean season.</li>
+      <li><b class="amber-t">Emergency Fund:</b> Only for unexpected costs — never for regular expenses.</li></ul></div>`;
+}
+
+function renderTrends() {
+  const v = UI.trendView;
+  let body = '';
+  if (v === 'chart') {
+    body = `<div class="card"><div class="h2" style="margin-top:0">Income &amp; 3-Month Forecast</div>
+      <div class="chart-wrap"><canvas id="chart"></canvas><div id="tip"></div></div>
+      <div class="legend"><span><i class="dot" style="background:#FF5C6F"></i>Lean month</span><span><i class="dot" style="background:#fff"></i>Current</span><span><i class="dot" style="background:rgba(255,255,255,.3)"></i>Normal</span><span><i class="dot" style="background:none;border:1.5px dashed #F2B544"></i>Forecast</span></div>
+      <div class="small muted" style="text-align:center;margin-top:8px">Tap a bar to see the exact amount.</div></div>
+      ${forecastCards()}`;
+  } else if (v === 'months') {
+    body = `<div class="mgrid">${chartData().slice().reverse().map(m => `<div class="mcard ${m.lean ? 'lean' : m.current ? 'cur' : ''}">
+      ${m.lean ? '<span class="badge">LEAN</span>' : m.current ? '<span class="badge g">NOW</span>' : ''}
+      <div style="font-weight:800;margin-bottom:8px">${m.month} '${m.year}</div>
+      <div class="small muted">Income</div><div class="amt ${m.lean ? 'red-t' : ''}">${fmt(m.income)}</div>
+      <div class="small muted" style="margin-top:6px">Saved</div><div class="amt green-t">${fmt(m.saved)}</div></div>`).join('')}</div>`;
+  } else {
+    const rows = [['Lean month income', '₹10,200', '₹30,400 effective'], ['Months in debt/yr', '3–4', '0'], ['Annual savings', '<₹1,000', '₹25,000+'], ['Emergency buffer', '₹0', '₹8,200+'], ['Financial stress', 'Extreme', 'Managed']];
+    body = `<div class="card"><table class="cmp"><thead><tr><th>Metric</th><th>Without FG</th><th>With FG</th></tr></thead>
+      <tbody>${rows.map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')}</tbody></table></div>`;
+  }
+  return `<div class="topbar"><h1>Trends</h1></div>
+    <div class="seg">${[['chart', 'Chart'], ['months', 'Months'], ['compare', 'Compare']].map(([k, l]) => `<button data-tv="${k}" class="${v === k ? 'on' : ''}">${l}</button>`).join('')}</div>${body}`;
+}
+
+/* ================= 5. MODALS ================= */
+function openSheet(html, bind) {
+  const sh = document.getElementById('sheet');
+  sh.innerHTML = '<div class="handle"></div>' + html;
+  document.getElementById('overlay').classList.add('show'); sh.classList.add('show'); sh.scrollTop = 0;
+  if (bind) bind(sh);
+  bindSheetDrag(sh);
+}
+function closeSheet() {
+  document.getElementById('overlay').classList.remove('show');
+  const sh = document.getElementById('sheet'); sh.classList.remove('show'); sh.style.transform = '';
+}
+function bindSheetDrag(sh) {
+  const h = sh.querySelector('.handle'); let y0 = null;
+  h.ontouchstart = e => { y0 = e.touches[0].clientY; };
+  h.ontouchmove = e => { if (y0 == null) return; const dy = Math.max(0, e.touches[0].clientY - y0); sh.style.transform = `translate(-50%, ${dy}px)`; };
+  h.ontouchend = e => { const dy = e.changedTouches[0].clientY - (y0 || 0); y0 = null; sh.style.transform = ''; if (dy > 80) closeSheet(); };
+  h.onclick = closeSheet;
+}
+function num(id) { return Math.round(parseFloat(document.getElementById(id).value) || 0); }
+function afterChange(msg) { persist(); closeSheet(); render(); if (msg) toast(msg); }
+
+function modalIncome() {
+  openSheet(`<div class="sheet-title">${ic('receive', 22)}Log Income</div>
+    <div class="field"><input id="m_amt" class="amount" type="number" inputmode="numeric" placeholder="₹0"></div>
+    <div class="field"><label>Note (optional)</label><input id="m_note" placeholder="e.g. Weekend delivery"></div>
+    <div class="small muted" style="margin-bottom:14px">${new Date().toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</div>
+    <button class="btn" id="m_go">Log Income</button>`, sh => {
+    setTimeout(() => sh.querySelector('#m_amt').focus(), 320);
+    sh.querySelector('#m_go').onclick = e => {
+      const amt = num('m_amt'), note = document.getElementById('m_note').value.trim();
+      if (amt <= 0) { toast('Enter an amount', '#FF5C6F'); return; }
+      act(e.currentTarget, () => api('POST', '/income', { amount: amt, note }), 'Income logged: ' + fmt(amt));
+    };
+  });
+}
+function modalExpense() {
+  let sel = null;
+  openSheet(`<div class="sheet-title">${ic('send', 22)}Pay Expense</div>
+    <div class="small muted" style="margin-bottom:10px">Tap an expense to quick-log it, or type a custom amount.</div>
+    ${STATE.expenses.filter(e => e.active).map(e => `<div class="pick" data-pe="${e.id}"><span class="ico">${ic(e.icon, 18)}</span><span style="flex:1">${esc(e.name)}</span><b>${fmt(e.amount)}</b></div>`).join('') || '<div class="empty">No active expenses.</div>'}
+    <div class="field" style="margin-top:12px"><label>Amount</label><input id="m_amt" type="number" inputmode="numeric" placeholder="₹0"></div>
+    <div class="field"><label>What for?</label><input id="m_note" placeholder="e.g. Bike repair"></div>
+    <button class="btn" id="m_go">Mark as Paid</button>`, sh => {
+    sh.querySelectorAll('[data-pe]').forEach(p => p.onclick = () => {
+      sel = STATE.expenses.find(e => e.id == p.dataset.pe);
+      sh.querySelectorAll('[data-pe]').forEach(x => x.classList.toggle('on', x === p));
+      sh.querySelector('#m_amt').value = sel.amount; sh.querySelector('#m_note').value = sel.name;
+    });
+    sh.querySelector('#m_go').onclick = e => {
+      const amt = num('m_amt'), note = document.getElementById('m_note').value.trim() || 'Expense';
+      if (amt <= 0) { toast('Enter an amount', '#FF5C6F'); return; }
+      act(e.currentTarget, () => api('POST', '/expenses/pay', { amount: amt, note, expenseId: sel ? sel.id : null }), 'Marked paid: ' + fmt(amt));
+    };
+  });
+}
+function fundSeg(fund) {
+  return `<div class="seg"><button data-fund="lean" class="${fund === 'lean' ? 'on' : ''}">Lean Month Fund</button><button data-fund="emer" class="${fund === 'emer' ? 'on' : ''}">Emergency Fund</button></div>`;
+}
+function bindFundSeg(sh, onChange) {
+  sh.querySelectorAll('[data-fund]').forEach(b => b.onclick = () => {
+    sh.querySelectorAll('[data-fund]').forEach(x => x.classList.toggle('on', x === b)); onChange(b.dataset.fund);
+  });
+}
+function modalSave(fund) {
+  fund = fund || 'lean';
+  const sug = Math.round(STATE.monthIncome * 0.15);
+  openSheet(`<div class="sheet-title">${ic('save', 22)}Save to Buffer</div>
+    <div class="chip" style="margin-bottom:12px">Recommended: <b class="gold-t">${fmt(sug)}</b> (15% of this month's income)</div>
+    <div class="field"><input id="m_amt" class="amount" type="number" inputmode="numeric" value="${sug || ''}" placeholder="₹0"></div>
+    ${fundSeg(fund)}
+    <button class="btn" id="m_go">Save</button>`, sh => {
+    bindFundSeg(sh, f => fund = f);
+    sh.querySelector('#m_go').onclick = e => {
+      const amt = num('m_amt');
+      if (amt <= 0) { toast('Enter an amount', '#FF5C6F'); return; }
+      const name = fund === 'lean' ? 'Lean Fund' : 'Emergency Fund';
+      act(e.currentTarget, () => api('POST', `/buffers/${fund}/deposit`, { amount: amt }), fmt(amt) + ' saved to ' + name);
+    };
+  });
+}
+function modalDraw(fund) {
+  fund = fund || 'lean';
+  openSheet(`<div class="sheet-title">${ic('draw', 22)}Draw from Buffer</div>
+    ${fundSeg(fund)}
+    <div class="row" style="margin-bottom:12px"><span class="muted">Current balance</span><b id="m_bal" class="gold-t">${fmt(fund === 'lean' ? STATE.leanBal : STATE.emerBal)}</b></div>
+    <div class="field"><input id="m_amt" class="amount" type="number" inputmode="numeric" placeholder="₹0"></div>
+    <div id="m_warn"></div>
+    <div class="field"><label>Reason (required)</label><input id="m_note" placeholder="Medical, Rent shortfall, etc."></div>
+    <button class="btn red" id="m_go">Withdraw</button>`, sh => {
+    const bal = () => fund === 'lean' ? STATE.leanBal : STATE.emerBal;
+    const check = () => {
+      const over = num('m_amt') > bal();
+      sh.querySelector('#m_warn').innerHTML = over ? `<div class="warn">${ic('alert', 16)}Amount is more than the available balance (${fmt(bal())}).</div>` : '';
+      sh.querySelector('#m_go').disabled = over; return !over;
+    };
+    bindFundSeg(sh, f => { fund = f; sh.querySelector('#m_bal').textContent = fmt(bal()); sh.querySelector('#m_bal').className = f === 'lean' ? 'gold-t' : 'green-t'; check(); });
+    sh.querySelector('#m_amt').oninput = check;
+    sh.querySelector('#m_go').onclick = e => {
+      const amt = num('m_amt'), note = document.getElementById('m_note').value.trim();
+      if (amt <= 0) { toast('Enter an amount', '#FF5C6F'); return; }
+      if (!check()) return;
+      if (!note) { toast('Please give a reason', '#FF5C6F'); return; }
+      act(e.currentTarget, () => api('POST', `/buffers/${fund}/withdraw`, { amount: amt, reason: note }), 'Withdrew ' + fmt(amt));
+    };
+  });
+}
+function modalAddExpense() {
+  const icons = ['home', 'cart', 'phone', 'fuel', 'doc', 'bulb', 'book', 'pill', 'bus', 'box'];
+  let icon = icons[0];
+  openSheet(`<div class="sheet-title">${ic('plus', 22)}Add Expense</div>
+    <div class="field"><label>Name</label><input id="m_name" placeholder="e.g. School fees"></div>
+    <div class="field"><label>Monthly amount</label><input id="m_amt" type="number" inputmode="numeric" placeholder="₹0"></div>
+    <div class="field"><label>Icon</label><div style="display:flex;flex-wrap:wrap;gap:6px">${icons.map((i, k) => `<div class="pick ${k ? '' : 'on'}" data-ic="${i}" style="width:52px;justify-content:center;margin:0">${ic(i)}</div>`).join('')}</div></div>
+    <button class="btn" id="m_go">Add Expense</button>`, sh => {
+    sh.querySelectorAll('[data-ic]').forEach(p => p.onclick = () => { icon = p.dataset.ic; sh.querySelectorAll('[data-ic]').forEach(x => x.classList.toggle('on', x === p)); });
+    sh.querySelector('#m_go').onclick = e => {
+      const name = document.getElementById('m_name').value.trim(), amt = num('m_amt');
+      if (!name || amt <= 0) { toast('Enter name and amount', '#FF5C6F'); return; }
+      act(e.currentTarget, () => api('POST', '/expenses', { name, amount: amt, icon }), 'Expense added');
+    };
+  });
+}
+function modalSettings() {
+  openSheet(`<div class="sheet-title">${ic('settings', 22)}Settings</div>
+    <div class="field"><label>Name</label><input id="s_name" value="${esc(STATE.name)}"></div>
+    <div class="field"><label>City</label><input id="s_city" value="${esc(STATE.city)}"></div>
+    <div class="field"><label>Worker type</label><select id="s_wt">${WORKER_TYPES.map(w => `<option value="${w.id}" ${w.id === STATE.workerType ? 'selected' : ''}>${w.label}</option>`).join('')}</select></div>
+    <div class="field"><label>Lean Fund target</label><input id="s_lt" type="number" inputmode="numeric" value="${STATE.leanTarget}"></div>
+    <div class="field"><label>Emergency Fund target</label><input id="s_et" type="number" inputmode="numeric" value="${STATE.emerTarget}"></div>
+    <button class="btn" id="s_save">Save Settings</button>
+    <div class="btns"><button class="btn ghost" id="s_exp">Export Data</button><button class="btn red" id="s_reset">Reset App</button></div>
+    <button class="btn ghost" id="s_out" style="margin-bottom:8px">Log Out${STATE.username ? ' (@' + esc(STATE.username) + ')' : ''}</button>
+    <div class="small muted" style="text-align:center;margin-top:6px">App version: ${VERSION} | Finance Guru | Tech Habba 2026</div>`, sh => {
+    sh.querySelector('#s_save').onclick = e => {
+      const body = {
+        name: document.getElementById('s_name').value.trim() || STATE.name,
+        city: document.getElementById('s_city').value.trim(),
+        workerType: document.getElementById('s_wt').value,
+        leanTarget: num('s_lt') || 30000, emerTarget: num('s_et') || 15000
+      };
+      act(e.currentTarget, () => api('PUT', '/settings', body), 'Settings saved');
+    };
+    sh.querySelector('#s_exp').onclick = exportData;
+    sh.querySelector('#s_reset').onclick = e => {
+      if (!confirm('Reset Finance Guru? All your money data will be erased (your account stays).')) return;
+      UI.tab = 'home';
+      act(e.currentTarget, () => api('POST', '/reset'), 'App reset');
+    };
+    sh.querySelector('#s_out').onclick = () => { clearSession(); UI.auth = 'login'; closeSheet(); render(); toast('Logged out'); };
+  });
+}
+async function exportData() {
+  let data;
+  try { data = await api('GET', '/export'); } catch (e) { toast(e.message, '#FF5C6F'); return; }
+  const json = JSON.stringify(data, null, 2);
+  const done = () => toast('Data copied to clipboard');
+  if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(json).then(done, () => fallbackCopy(json, done));
+  else fallbackCopy(json, done);
+}
+function fallbackCopy(text, done) {
+  const ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); done(); } catch (e) { toast('Copy failed', '#FF5C6F'); }
+  ta.remove();
+}
+
+/* ---- Month end ---- */
+/* The server archives the old month (GET /api/state or login) and returns a wrapUp summary. */
+/* ---- SMS import (web demo of the Android SMS reader) ---- */
+let SMS_INBOX = [];
+/* Native Android SMS reader (only present inside the Android app) */
+const NATIVE_SMS = (window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform() && window.Capacitor.Plugins && window.Capacitor.Plugins.SmsReader) || null;
+const monthStartMs = () => { const d = new Date(); return new Date(d.getFullYear(), d.getMonth(), 1).getTime(); };
+async function readPhoneSms(since) {
+  const st = await NATIVE_SMS.status();
+  if (!st.granted && !(await NATIVE_SMS.requestAccess()).granted) throw new Error('Allow SMS access to read bank messages');
+  return (await NATIVE_SMS.readInbox({ since, limit: 200 })).messages.map(m => ({ sender: m.sender || 'BANK', text: m.text }));
+}
+/* Auto-import: new bank SMS since the last sync (on open / when the app comes back) */
+async function syncPhoneSms() {
+  if (!NATIVE_SMS || !TOKEN || busy) return;
+  try {
+    if (!(await NATIVE_SMS.status()).granted) return;
+    let last = 0; try { last = +localStorage.getItem('fg_sms_sync') || 0; } catch (e) {}
+    const msgs = (await NATIVE_SMS.readInbox({ since: Math.max(last, monthStartMs()), limit: 50 })).messages.map(m => ({ sender: m.sender || 'BANK', text: m.text }));
+    try { localStorage.setItem('fg_sms_sync', String(Date.now() - 60000)); } catch (e) {}
+    if (!msgs.length) return;
+    const d = await api('POST', '/sms/import', { messages: msgs });
+    if (d.result.added) { render(); toast(`Auto-added ${d.result.added} from SMS (+${fmt(d.result.income)})`); }
+  } catch (e) { /* silent: background sync */ }
+}
+function listenPhoneSms() {
+  if (!NATIVE_SMS) return;
+  NATIVE_SMS.addListener('smsReceived', async m => {
+    if (!TOKEN) return;
+    try {
+      const d = await api('POST', '/sms/import', { messages: [{ sender: m.sender || 'BANK', text: m.text }] });
+      if (d.result.added) { render(); toast(d.result.income ? `+${fmt(d.result.income)} income added from SMS` : `−${fmt(d.result.spent)} spend logged from SMS`); }
+    } catch (e) {}
+  });
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') syncPhoneSms(); });
+}
+async function modalSms() {
+  try {
+    if (!SMS_INBOX.length) SMS_INBOX = NATIVE_SMS ? await readPhoneSms(monthStartMs()) : (await api('GET', '/sms/sample')).messages;
+  } catch (e) { toast(e.message, '#FF5C6F'); return; }
+  openSheet(`<div class="sheet-title">${ic('msg', 24)}Import from SMS</div>
+    <div class="small muted" style="margin-bottom:12px">${NATIVE_SMS ? `Found <b style="color:#fff">${SMS_INBOX.length}</b> bank &amp; UPI messages on this phone this month. Personal chats and OTPs are filtered out on your phone and never sent.`
+      : `Demo inbox. In the <a href="/download/FinanceGuru.apk" style="color:var(--accent)">Android app</a>, Finance Guru reads your real bank &amp; UPI messages (with your permission). OTPs and personal chats are skipped and never stored.`}</div>
+    <div id="sms_list">${SMS_INBOX.length ? SMS_INBOX.map(smsBubble).join('') : '<div class="empty">No bank messages this month yet.</div>'}</div>
+    <div class="field" style="margin-top:12px"><label>Or paste any bank SMS</label><textarea id="sms_paste" placeholder="e.g. Rs.1,150.00 credited to A/c XX2153 by SWIGGY on 20-11-26"></textarea></div>
+    <button class="btn ghost" id="sms_add" style="margin-bottom:10px">Add pasted SMS</button>
+    <button class="btn" id="sms_scan">Scan ${SMS_INBOX.length} messages</button>`, sh => {
+    sh.querySelector('#sms_add').onclick = () => {
+      const v = sh.querySelector('#sms_paste').value.trim(); if (!v) return toast('Paste an SMS first', '#FF5C6F');
+      SMS_INBOX.unshift({ sender: 'PASTED', text: v.slice(0, 500) }); SMS_INBOX = SMS_INBOX.slice(0, 50); modalSms();
+    };
+    sh.querySelector('#sms_scan').onclick = () => SMS_INBOX.length ? scanSms(sh) : toast('No messages to scan', '#FF5C6F');
+  });
+}
+function smsBubble(m, i) {
+  return `<div class="sms" id="sms_${i}"><div class="from"><span>${esc(m.sender)}</span></div><div class="txt">${esc(m.text)}</div><div class="res"></div></div>`;
+}
+async function scanSms(sh) {
+  const btn = sh.querySelector('#sms_scan'); btn.disabled = true; btn.textContent = 'Reading messages…';
+  let items;
+  try { items = (await api('POST', '/sms/preview', { messages: SMS_INBOX })).items; }
+  catch (e) { toast(e.message, '#FF5C6F'); btn.disabled = false; btn.textContent = 'Scan messages'; return; }
+  for (let i = 0; i < items.length; i++) {
+    await new Promise(r => setTimeout(r, 160));
+    const it = items[i], el = sh.querySelector('#sms_' + i); if (!el) return;
+    const res = el.querySelector('.res');
+    if (it.status === 'ok') {
+      el.classList.add('ok');
+      res.innerHTML = `<span style="color:${it.type === 'income' ? 'var(--pos)' : '#fff'}">${ic(it.icon, 16)}</span><b class="${it.type === 'income' ? 'green-t' : ''}">${it.type === 'income' ? '+' : '−'}${fmt(it.amount)}</b>
+        <span>${esc(it.merchant)}</span><span class="tag" style="margin-left:auto">${esc(it.category)}</span>`;
+    } else { el.classList.add('skip'); res.innerHTML = `${ic('close', 14)}<span>${esc(it.reason)}</span>`; }
+  }
+  const good = items.filter(x => x.status === 'ok');
+  if (!good.length) { btn.textContent = 'Nothing new to import'; return; }
+  const inc = good.filter(x => x.type === 'income').reduce((a, x) => a + x.amount, 0);
+  btn.disabled = false; btn.textContent = `Add ${good.length} transactions (+${fmt(inc)} income)`;
+  btn.onclick = () => act(btn, async () => {
+    const d = await api('POST', '/sms/import', { messages: SMS_INBOX });
+    SMS_INBOX = []; return d;
+  }, `Imported ${good.length} transactions from SMS`);
+}
+async function applySurplus(btn) {
+  const sp = STATE.insights && STATE.insights.surplus; if (!sp) return;
+  const steps = sp.steps.filter(s => s.id === 'emer' || s.id === 'lean');
+  await act(btn, async () => { for (const s of steps) await api('POST', `/buffers/${s.id}/deposit`, { amount: s.amount, note: 'Surplus plan' }); },
+    'Moved ' + fmt(steps.reduce((a, s) => a + s.amount, 0)) + ' to your buffers');
+}
+
+function showWrapUp(w) {
+  const [y, m] = w.monthKey.split('-').map(Number), d = new Date(y, m - 1, 1);
+  openSheet(`<div class="sheet-title">${ic('calendar', 22)}Month Wrap-Up</div>
+    <div class="h2">Last month: ${d.toLocaleString('en-IN', { month: 'long', year: 'numeric' })}</div>
+    <div class="card">
+      <div class="list-row"><div class="mid">${ic('trend', 18)}<div>Income earned</div></div><div class="amt green-t">${fmt(w.income)}</div></div>
+      <div class="list-row"><div class="mid">${ic('shield', 18)}<div>Savings made</div></div><div class="amt gold-t">${fmt(w.saved)}</div></div>
+      <div class="list-row"><div class="mid">${ic('card', 18)}<div>Expenses paid</div></div><div class="amt">${fmt(w.paid)}</div></div>
+    </div>
+    <p class="muted" style="margin-bottom:14px">Your buffers are kept safe. Log this month's income to get started.</p>
+    <button class="btn" id="w_go">Log Income</button>`, sh => { sh.querySelector('#w_go').onclick = () => { closeSheet(); setTimeout(modalIncome, 50); }; });
+}
+
+/* ================= 6. EVENT LISTENERS ================= */
+function switchTab(t) {
+  if (t === UI.tab) { document.getElementById('screen').scrollTop = 0; return; }
+  const dir = TABS.indexOf(t) > TABS.indexOf(UI.tab) ? 'slide-left' : 'slide-right';
+  UI.tab = t; document.getElementById('screen').scrollTop = 0; render(dir);
+}
+function bindEvents() {
+  document.querySelectorAll('.nav-btn').forEach(b => b.onclick = () => switchTab(b.dataset.tab));
+  document.getElementById('overlay').onclick = closeSheet;
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSheet(); });
+  const scr = document.getElementById('screen');
+  scr.addEventListener('click', e => {
+    const t = e.target.closest('[data-act],[data-goto],[data-delinc],[data-delexp],[data-dep],[data-wd],[data-tv]');
+    if (!t) return;
+    const d = t.dataset;
+    if (d.act) ({ income: modalIncome, expense: modalExpense, save: () => modalSave(), draw: () => modalDraw(), settings: modalSettings, addexp: modalAddExpense, sms: modalSms, surplus: () => applySurplus(t),
+      editexp: () => { UI.editExp = !UI.editExp; render(); } })[d.act]();
+    else if (d.goto) switchTab(d.goto);
+    else if (d.delinc) {
+      if (!confirm('Delete this income entry?')) return;
+      act(t, () => api('DELETE', '/income/' + d.delinc), 'Entry removed');
+    } else if (d.delexp) {
+      if (!confirm('Delete this expense?')) return;
+      act(t, () => api('DELETE', '/expenses/' + d.delexp), 'Expense deleted');
+    } else if (d.dep) modalSave(d.dep);
+    else if (d.wd) modalDraw(d.wd);
+    else if (d.tv) { UI.trendView = d.tv; render(); }
+  });
+  scr.addEventListener('change', e => {
+    const t = e.target;
+    if (t.dataset.togexp) act(null, () => api('PATCH', '/expenses/' + t.dataset.togexp, { active: t.checked }));
+    else if (t.dataset.expamt) act(null, () => api('PATCH', '/expenses/' + t.dataset.expamt, { amount: Math.max(0, Math.round(+t.value || 0)) }), 'Amount updated');
+  });
+  let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { if (UI.tab === 'trends' && UI.trendView === 'chart') setupChart(); }, 100); });
+}
+
+/* ================= 7. CANVAS CHART ================= */
+function setupChart() {
+  const canvas = document.getElementById('chart'); if (!canvas) return;
+  const dpr = window.devicePixelRatio || 1, w = canvas.clientWidth, h = 220;
+  canvas.width = w * dpr; canvas.height = h * dpr;
+  const ctx = canvas.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const data = chartDataWithForecast();
+  drawChart(canvas, data, w, h);
+  const tip = document.getElementById('tip');
+  const show = (clientX) => {
+    const r = canvas.getBoundingClientRect(), x = clientX - r.left;
+    const bar = UI.chartBars.find(b => x >= b.slotX && x < b.slotX + b.slotW);
+    if (!bar) { tip.style.display = 'none'; return; }
+    tip.innerHTML = bar.m.forecast ? `${bar.m.month} '${bar.m.year} forecast: ${fmt(bar.m.income)} · ${Math.round(bar.m.pLean * 100)}% lean` : `${bar.m.month} '${bar.m.year}: ${fmt(bar.m.income)}${bar.m.lean ? ' · LEAN' : ''}`;
+    tip.style.borderColor = bar.color; tip.style.display = 'block';
+    tip.style.left = Math.min(Math.max(bar.cx, 60), w - 60) + 'px'; tip.style.top = Math.max(bar.top, 30) + 'px';
+  };
+  canvas.onmousemove = e => show(e.clientX);
+  canvas.onmouseleave = () => { tip.style.display = 'none'; };
+  canvas.onclick = e => show(e.clientX);
+  canvas.ontouchstart = e => show(e.touches[0].clientX);
+}
+function drawChart(canvas, historyData, W, H) {
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, W, H);
+  const PAD = { top: 20, right: 10, bottom: 40, left: 50 };
+  const CW = W - PAD.left - PAD.right, CH = H - PAD.top - PAD.bottom;
+  const MAX = Math.max(30000, Math.ceil(Math.max(...historyData.map(m => m.income)) / 10000) * 10000);
+  const ticks = []; for (let v = 0; v <= MAX; v += 10000) ticks.push(v);
+  ticks.forEach(v => {
+    const y = PAD.top + CH - (v / MAX) * CH;
+    ctx.strokeStyle = 'rgba(255,255,255,0.07)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(PAD.left, y); ctx.lineTo(W - PAD.right, y); ctx.stroke();
+    ctx.fillStyle = '#8F8A8D'; ctx.font = '10px system-ui'; ctx.textAlign = 'right';
+    ctx.fillText('₹' + (v / 1000) + 'K', PAD.left - 6, y + 4);
+  });
+  // lean threshold line
+  const ly = PAD.top + CH - (LEAN_LIMIT / MAX) * CH;
+  ctx.setLineDash([4, 4]); ctx.strokeStyle = 'rgba(255,68,102,.5)'; ctx.beginPath(); ctx.moveTo(PAD.left, ly); ctx.lineTo(W - PAD.right, ly); ctx.stroke(); ctx.setLineDash([]);
+  const n = Math.max(12, historyData.length), slotW = CW / n, barW = slotW * 0.65;
+  const offset = n - historyData.length;
+  UI.chartBars = [];
+  historyData.forEach((m, j) => {
+    const i = j + offset;
+    const bh = Math.max(0, (m.income / MAX) * CH);
+    const bx = PAD.left + i * slotW + (slotW - barW) / 2, by = PAD.top + CH - bh;
+    if (m.forecast) {
+      const fcol = m.pLean >= 0.5 ? '#FF5C6F' : '#F2B544';
+      // uncertainty whisker (80% range)
+      const yl = PAD.top + CH - Math.min(1, m.low / MAX) * CH, yh = PAD.top + CH - Math.min(1, m.high / MAX) * CH;
+      ctx.strokeStyle = fcol; ctx.globalAlpha = .55; ctx.lineWidth = 1.2;
+      ctx.beginPath(); ctx.moveTo(bx + barW / 2, yl); ctx.lineTo(bx + barW / 2, yh); ctx.moveTo(bx + barW * .3, yh); ctx.lineTo(bx + barW * .7, yh); ctx.stroke(); ctx.globalAlpha = 1;
+      ctx.setLineDash([3, 3]); ctx.strokeStyle = fcol; ctx.fillStyle = m.pLean >= 0.5 ? 'rgba(255,92,111,.16)' : 'rgba(242,181,68,.14)';
+      ctx.beginPath(); if (ctx.roundRect) ctx.roundRect(bx, by, barW, bh, [3, 3, 0, 0]); else ctx.rect(bx, by, barW, bh);
+      ctx.fill(); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = fcol; ctx.font = '9px system-ui'; ctx.textAlign = 'center';
+      ctx.fillText(m.month, bx + barW / 2, H - PAD.bottom + 14);
+      UI.chartBars.push({ m, color: fcol, slotX: PAD.left + i * slotW, slotW, cx: bx + barW / 2, top: by });
+      return;
+    }
+    const color = m.lean ? '#FF5C6F' : m.current ? '#FFFFFF' : '#FFFFFF';
+    ctx.fillStyle = m.lean || m.current ? color : 'rgba(255,255,255,0.28)';
+    ctx.beginPath();
+    if (ctx.roundRect) ctx.roundRect(bx, by, barW, bh, [3, 3, 0, 0]); else ctx.rect(bx, by, barW, bh);
+    ctx.fill();
+    ctx.fillStyle = m.lean ? '#FF5C6F' : m.current ? '#FFFFFF' : '#8F8A8D';
+    ctx.font = (m.lean || m.current ? 'bold ' : '') + '9px system-ui'; ctx.textAlign = 'center';
+    ctx.fillText(m.month, bx + barW / 2, H - PAD.bottom + 14);
+    UI.chartBars.push({ m, color, slotX: PAD.left + i * slotW, slotW, cx: bx + barW / 2, top: by });
+  });
+}
+
+/* ================= 8. INIT ================= */
+async function init() {
+  document.querySelectorAll('[data-i]').forEach(el => el.innerHTML = ic(el.dataset.i, 22));
+  loadState();          // show the cached copy instantly
+  bindEvents();
+  listenPhoneSms();
+  render();
+  if (!TOKEN) return;
+  try {                 // then refresh from the server (also does month rollover)
+    const d = await api('GET', '/state');
+    render();
+    if (d.wrapUp) setTimeout(() => showWrapUp(d.wrapUp), 300);
+    syncPhoneSms();
+  } catch (e) { toast(e.message, '#FF5C6F'); }
+}
+window.onload = init;
+</script>
+</body>
+</html>
